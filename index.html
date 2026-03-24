@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Abdul Malik Amrulloh</title>
+    <style>
+        :root {
+            --primary: #2563eb; /* Warna Biru Teknik */
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--light); color: var(--dark); line-height: 1.6; }
+        header { background: var(--dark); color: white; padding: 4rem 1rem; text-align: center; }
+        .container { max-width: 900px; margin: auto; padding: 2rem; }
+        h1 { margin: 0; font-size: 2.5rem; }
+        .subtitle { color: #94a3b8; font-size: 1.1rem; }
+        
+        section { margin-bottom: 3rem; }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; margin-bottom: 1.5rem; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid var(--primary); }
+        .card h3 { margin-top: 0; color: var(--primary); }
+        .tag { background: #dbeafe; color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        
+        footer { text-align: center; padding: 2rem; color: #64748b; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Abdul Malik Amrulloh</h1>
+    <p class="subtitle">Electronics Engineering Student @ Politeknik Negeri Bandung</p>
+</header>
+
+<div class="container">
+    <section id="about">
+        <h2>Tentang Saya</h2>
+        <p>Saya adalah mahasiswa Teknik Elektronika semester 6 yang berfokus pada sistem kontrol, mekatronika, dan solusi berbasis IoT. Berpengalaman dalam mengembangkan sistem monitoring kesehatan pintar dan otomatisasi industri.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Proyek Unggulan</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>MEDZAI</h3>
+                <p><span class="tag">IoT</span> <span class="tag">Health-Tech</span></p>
+                <p>Wearable device berbasis IoT untuk monitoring kondisi pasien demam berdarah (DBD) secara real-time.</p>
+            </div>
+            <div class="card">
+                <h3>V-PALM DRONE</h3>
+                <p><span class="tag">AI</span> <span class="tag">Environment</span></p>
+                <p>Sistem verifikasi karbon otomatis untuk industri kelapa sawit menggunakan teknologi drone dan AI.</p>
+            </div>
+            <div class="card">
+                <h3>SIGAP-K3DISTRIK</h3>
+                <p><span class="tag">SCADA</span> <span class="tag">Management</span></p>
+                <p>Digitalisasi manajemen risiko K3 pada distribusi listrik untuk meningkatkan keamanan kerja.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Keahlian Teknis</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Hardware & Control</h3>
+                <p>Arduino, PLC, LabVIEW, InTouch HMI/SCADA, Sistem Kontrol Industri.</p>
+            </div>
+            <div class="card">
+                <h3>Software & Tools</h3>
+                <p>C/C++, Flutter, Firebase, Proteus, MATLAB, Git/GitHub.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Prestasi</h2>
+        <ul>
+            <li><strong>Juara 1</strong> - FUSE 2025</li>
+            <li><strong>Juara 2</strong> - AITEC 2025</li>
+            <li>Sertifikasi "Belajar Dasar AI" - Dicoding Indonesia</li>
+        </ul>
+    </section>
+</div>
+
+<footer>
+    &copy; 2026 Abdul Malik Amrulloh. Dibuat dengan semangat teknik.
+</footer>
+
+</body>
+</html>
