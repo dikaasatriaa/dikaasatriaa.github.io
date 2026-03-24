@@ -34,11 +34,10 @@
         }
 
         .hero-title {
-            font-size: clamp(4rem, 15vw, 12rem);
-            line-height: 0.8;
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.85;
             letter-spacing: -0.05em;
             text-transform: uppercase;
-            z-index: 1;
         }
 
         .section-tag {
@@ -114,33 +113,65 @@
         .badge-wrapper {
             perspective: 2000px;
             z-index: 50;
+            user-select: none;
         }
 
         .id-card {
-            width: 300px;
-            height: 450px;
+            width: 280px;
+            height: 420px;
             background: #fff;
             color: #000;
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 20px;
             transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
             box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8);
             position: relative;
             border: 1px solid #ddd;
+            cursor: grab;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
         }
 
-        .lanyard {
+        .id-card:active {
+            cursor: grabbing;
+            box-shadow: 0 100px 150px -30px rgba(0,0,0,0.9);
+        }
+
+        .lanyard-top {
             position: absolute;
-            top: -250px;
+            top: -300px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
+            width: 120px;
             height: 300px;
-            border: 8px solid #111;
+            border: 12px solid #1a1a1a;
             border-bottom: none;
-            border-radius: 50px 50px 0 0;
+            border-radius: 60px 60px 0 0;
             z-index: -1;
+        }
+
+        /* Retractable Reel */
+        .reel {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #111;
+            border-radius: 50%;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .reel::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
         }
 
         .reveal {
@@ -152,6 +183,16 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Glossy effect for the card */
+        .id-card-gloss {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+            pointer-events: none;
+            border-radius: 20px;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -169,46 +210,53 @@
     </nav>
 
     <!-- Bagian Hero -->
-    <section class="min-h-screen relative flex flex-col items-center justify-center pt-20 overflow-visible">
-        <div class="absolute inset-0 flex items-center justify-center opacity-[0.05] pointer-events-none text-white">
-            <h1 class="font-anton hero-title text-center leading-none">SHOW<br>CASE</h1>
-        </div>
+    <section class="min-h-screen relative flex items-center justify-center pt-32 px-6 overflow-visible">
+        <div class="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Sisi Kiri: Judul & Intro -->
+            <div class="z-10 order-2 md:order-1 text-center md:text-left">
+                <h1 class="font-anton hero-title mb-8 reveal">
+                    SHOW<br><span class="text-blue-600">CASE</span>
+                </h1>
+                <p id="about" class="text-lg md:text-2xl font-light text-gray-400 leading-relaxed reveal max-w-xl mx-auto md:mx-0">
+                    Mahasiswa Teknik Elektronika Polban dengan spesialisasi <span class="text-white font-bold">Otomasi Industri & IoT</span>. 
+                    Telah menyelesaikan <span class="text-blue-500 font-bold underline decoration-2 underline-offset-4">13 Proyek Strategis</span> di bidang robotika dan sistem cerdas.
+                </p>
+            </div>
 
-        <div class="badge-wrapper mb-16">
-            <div class="lanyard"></div>
-            <div class="id-card flex flex-col items-center" id="interactiveCard">
-                <div class="w-full flex justify-between items-center mb-6">
-                    <!-- Gambar Logo Polban -->
-                    <img src="OIP.webp" class="h-6" alt="Polban">
-                    <span class="text-[8px] font-black tracking-widest bg-black text-white px-2 py-1 rounded">2023-2027</span>
-                </div>
-                
-                <div class="w-40 h-48 bg-gray-100 rounded-lg mb-6 border-2 border-gray-200 overflow-hidden flex items-center justify-center relative group">
-                    <!-- Gambar Profil Dika -->
-                    <img src="dikas.jpg" alt="Andika Satria" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-
-                <div class="text-center w-full">
-                    <h2 class="text-2xl font-anton uppercase tracking-tight leading-none mb-1">Andika Satria P.</h2>
-                    <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-6 text-blue-600">Electronics & Automation Engineer</p>
-                    
-                    <div class="flex justify-between items-end border-t border-gray-100 pt-4">
-                        <div class="text-left">
-                            <p class="text-[7px] text-gray-400 uppercase font-bold">Student ID</p>
-                            <p class="text-[10px] font-mono font-bold">2313440XX-POLBAN</p>
+            <!-- Sisi Kanan: Kartu ID 3D Interaktif (Bisa ditarik) -->
+            <div class="flex justify-center md:justify-end order-1 md:order-2">
+                <div class="badge-wrapper" id="dragArea">
+                    <div class="lanyard-top"></div>
+                    <div class="id-card flex flex-col items-center" id="interactiveCard">
+                        <div class="id-card-gloss"></div>
+                        <div class="reel"></div>
+                        
+                        <div class="w-full flex justify-between items-center mb-6">
+                            <img src="OIP.webp" class="h-6" alt="Logo Polban">
+                            <span class="text-[8px] font-black tracking-widest bg-black text-white px-2 py-1 rounded">2023-2027</span>
                         </div>
-                        <div class="h-8 w-24 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)]"></div>
+                        
+                        <div class="w-40 h-48 bg-gray-100 rounded-lg mb-6 border-2 border-gray-200 overflow-hidden flex items-center justify-center relative group">
+                            <img src="dikas.jpg" alt="Andika Satria" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+
+                        <div class="text-center w-full">
+                            <h2 class="text-2xl font-anton uppercase tracking-tight leading-none mb-1">Andika Satria P.</h2>
+                            <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-6">Electronics & Automation Engineer</p>
+                            
+                            <div class="flex justify-between items-end border-t border-gray-100 pt-4">
+                                <div class="text-left">
+                                    <p class="text-[7px] text-gray-400 uppercase font-bold">Student ID</p>
+                                    <p class="text-[10px] font-mono font-bold">2313440XX-POLBAN</p>
+                                </div>
+                                <div class="h-8 w-24 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)]"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="max-w-3xl px-6 text-center z-10">
-            <p id="about" class="text-lg md:text-2xl font-light text-gray-400 leading-relaxed reveal">
-                Mahasiswa Teknik Elektronika Polban dengan spesialisasi <span class="text-white font-bold">Otomasi Industri & IoT</span>. 
-                Telah menyelesaikan <span class="text-blue-500 font-bold underline decoration-2 underline-offset-4">13 Proyek</span> di bidang robotika dan sistem cerdas.
-            </p>
         </div>
     </section>
 
@@ -217,7 +265,7 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6 reveal">
             <div>
                 <span class="section-tag mb-6">Karya Terpilih</span>
-                <h2 class="text-5xl md:text-7xl font-anton uppercase leading-none">Arsip Proyek</h2>
+                <h2 class="text-5xl md:text-7xl font-anton uppercase leading-none text-white">Arsip Proyek</h2>
             </div>
             <p class="text-gray-500 max-w-sm text-sm uppercase font-bold tracking-widest">
                 Kumpulan karya terbaik dari kompetisi nasional, riset, dan pengembangan sistem.
@@ -230,15 +278,15 @@
             <div class="porto-item large reveal">
                 <div class="glass-card flex flex-col md:flex-row">
                     <div class="md:w-3/5 img-placeholder">
-                        <span class="absolute top-4 left-4 z-10 bg-blue-600 text-[10px] font-black px-3 py-1">PEMENANG PENGHARGAAN</span>
+                        <span class="absolute top-4 left-4 z-10 bg-blue-600 text-[10px] font-black px-3 py-1 text-white">PEMENANG PENGHARGAAN</span>
                     </div>
                     <div class="md:w-2/5 p-10 flex flex-col justify-center">
                         <div class="text-blue-600 font-anton text-4xl mb-4">01</div>
-                        <h3 class="text-2xl font-anton uppercase mb-4">MEDZAI - IoT Health</h3>
+                        <h3 class="text-2xl font-anton uppercase mb-4 text-white">MEDZAI - IoT Health</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-6">Juara 1 FUSE 2025. Sistem monitoring pasien DBD dengan integrasi AI untuk deteksi dini kondisi kritis.</p>
                         <div class="flex gap-2">
-                            <span class="text-[8px] font-bold border border-white/20 px-2 py-1 uppercase">IoT</span>
-                            <span class="text-[8px] font-bold border border-white/20 px-2 py-1 uppercase">Healthcare</span>
+                            <span class="text-[8px] font-bold border border-white/20 px-2 py-1 uppercase text-white">IoT</span>
+                            <span class="text-[8px] font-bold border border-white/20 px-2 py-1 uppercase text-white">Healthcare</span>
                         </div>
                     </div>
                 </div>
@@ -248,7 +296,7 @@
             <div class="porto-item small reveal">
                 <div class="glass-card p-10 flex flex-col h-full">
                     <div class="text-blue-600 font-anton text-4xl mb-6">02</div>
-                    <h3 class="text-2xl font-anton uppercase mb-4">V-COMS - Carbon AI</h3>
+                    <h3 class="text-2xl font-anton uppercase mb-4 text-white">V-COMS - Carbon AI</h3>
                     <p class="text-gray-400 text-sm leading-relaxed flex-grow">Medali Emas IID 2025. Monitoring emisi karbon kendaraan menggunakan Computer Vision.</p>
                     <div class="img-placeholder mt-8 rounded-lg opacity-50"></div>
                 </div>
@@ -258,7 +306,7 @@
             <div class="porto-item medium reveal">
                 <div class="glass-card p-10">
                     <div class="text-blue-600 font-anton text-4xl mb-6">03</div>
-                    <h3 class="text-2xl font-anton uppercase mb-4">AgriSpectra Drone</h3>
+                    <h3 class="text-2xl font-anton uppercase mb-4 text-white">AgriSpectra Drone</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">Juara 2 AITEC 2025. Optimalisasi pertanian menggunakan drone multispektoral.</p>
                     <div class="img-placeholder rounded-lg"></div>
                 </div>
@@ -268,7 +316,7 @@
             <div class="porto-item medium reveal">
                 <div class="glass-card p-10">
                     <div class="text-blue-600 font-anton text-4xl mb-6">04</div>
-                    <h3 class="text-2xl font-anton uppercase mb-4">CHIMOS Poultry</h3>
+                    <h3 class="text-2xl font-anton uppercase mb-4 text-white">CHIMOS Poultry</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">Juara 3 ERIC 2025. Sistem kendali kandang ayam cerdas berbasis jaringan LoRa.</p>
                     <div class="img-placeholder rounded-lg"></div>
                 </div>
@@ -278,7 +326,7 @@
             <div class="porto-item small reveal">
                 <div class="glass-card p-10 border-blue-600/30">
                     <span class="text-[10px] font-bold text-blue-500 uppercase">Hibah PKM-KC</span>
-                    <h3 class="text-xl font-anton mt-4 uppercase">IoT Shrimp Farm</h3>
+                    <h3 class="text-xl font-anton mt-4 uppercase text-white">IoT Shrimp Farm</h3>
                     <p class="text-gray-500 text-xs mt-4">Automasi tambak udang untuk efisiensi ekosistem akuatik.</p>
                     <div class="num-label mt-10 text-right">05</div>
                 </div>
@@ -287,18 +335,18 @@
             <!-- 06: ESP32 MIN SYS -->
             <div class="porto-item small reveal">
                 <div class="glass-card p-10">
-                    <h3 class="text-xl font-anton uppercase">Hardware ESP32</h3>
-                    <p class="text-gray-500 text-xs mt-4 text-gray-500">Desain PCB kustom untuk kontrol suhu sistem closed-loop.</p>
-                    <div class="num-label mt-10 text-right">06</div>
+                    <h3 class="text-xl font-anton uppercase text-white">Hardware ESP32</h3>
+                    <p class="text-gray-500 text-xs mt-4">Desain PCB kustom untuk kontrol suhu sistem closed-loop.</p>
+                    <div class="num-label mt-10 text-right text-white">06</div>
                 </div>
             </div>
 
             <!-- 07: LORA FLOOD -->
             <div class="porto-item small reveal">
                 <div class="glass-card p-10">
-                    <h3 class="text-xl font-anton uppercase text-blue-500 text-blue-500">LoRa Flood EWS</h3>
-                    <p class="text-gray-500 text-xs mt-4 text-gray-500">Sistem peringatan banjir jarak jauh terintegrasi bot Telegram.</p>
-                    <div class="num-label mt-10 text-right">07</div>
+                    <h3 class="text-xl font-anton uppercase text-blue-500">LoRa Flood EWS</h3>
+                    <p class="text-gray-500 text-xs mt-4">Sistem peringatan banjir jarak jauh terintegrasi bot Telegram.</p>
+                    <div class="num-label mt-10 text-right text-blue-500">07</div>
                 </div>
             </div>
 
@@ -306,24 +354,24 @@
             <div class="porto-item large reveal">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="glass-card p-8">
-                        <span class="text-blue-500 text-xs font-bold uppercase tracking-widest text-blue-500">Inovasi 08</span>
-                        <h4 class="font-anton text-xl mt-2 uppercase">KMLI Indicator Sys</h4>
-                        <p class="text-gray-500 text-xs mt-2 italic text-gray-500">Integrasi VB.NET + Arduino</p>
+                        <span class="text-blue-500 text-xs font-bold uppercase tracking-widest">Inovasi 08</span>
+                        <h4 class="font-anton text-xl mt-2 uppercase text-white">KMLI Indicator Sys</h4>
+                        <p class="text-gray-500 text-xs mt-2 italic">Integrasi VB.NET + Arduino</p>
                     </div>
                     <div class="glass-card p-8">
                         <span class="text-blue-500 text-xs font-bold uppercase tracking-widest text-blue-500">Prestasi 09</span>
-                        <h4 class="font-anton text-xl mt-2 uppercase">LKS Robotika Jabar</h4>
-                        <p class="text-gray-500 text-xs mt-2 text-gray-500">Pemenang Juara 1 Provinsi 2022</p>
+                        <h4 class="font-anton text-xl mt-2 uppercase text-white">LKS Robotika Jabar</h4>
+                        <p class="text-gray-500 text-xs mt-2">Pemenang Juara 1 Provinsi 2022</p>
                     </div>
                     <div class="glass-card p-8">
                         <span class="text-blue-500 text-xs font-bold uppercase tracking-widest text-blue-500">Nasional 10</span>
-                        <h4 class="font-anton text-xl mt-2 uppercase">LKS Mobile Robotics</h4>
-                        <p class="text-gray-500 text-xs mt-2 text-gray-500">Representasi Peserta Tingkat Nasional</p>
+                        <h4 class="font-anton text-xl mt-2 uppercase text-white">LKS Mobile Robotics</h4>
+                        <p class="text-gray-500 text-xs mt-2">Representasi Peserta Tingkat Nasional</p>
                     </div>
                     <div class="glass-card p-8">
                         <span class="text-blue-500 text-xs font-bold uppercase tracking-widest text-blue-500">Bisnis 11</span>
                         <h4 class="font-anton text-xl mt-2 uppercase text-white">TraceLab Venture</h4>
-                        <p class="text-gray-500 text-xs mt-2 text-gray-500">Layanan Desain PCB Profesional</p>
+                        <p class="text-gray-500 text-xs mt-2">Layanan Desain PCB Profesional</p>
                     </div>
                 </div>
             </div>
@@ -331,16 +379,16 @@
             <!-- 12 & 13 -->
             <div class="porto-item small reveal">
                 <div class="glass-card p-8 flex flex-col justify-center items-center text-center bg-blue-600/5">
-                    <div class="text-4xl font-anton text-blue-600 mb-2 text-blue-600">12</div>
-                    <h4 class="font-anton text-xl uppercase">HAKI Algoritma Sungai</h4>
-                    <p class="text-gray-500 text-[10px] mt-2 tracking-widest uppercase text-gray-500">Kekayaan Intelektual</p>
+                    <div class="text-4xl font-anton text-blue-600 mb-2">12</div>
+                    <h4 class="font-anton text-xl uppercase text-white">HAKI Algoritma Sungai</h4>
+                    <p class="text-gray-500 text-[10px] mt-2 tracking-widest uppercase">Kekayaan Intelektual</p>
                 </div>
             </div>
             <div class="porto-item small reveal">
                 <div class="glass-card p-8 flex flex-col justify-center items-center text-center">
                     <div class="text-4xl font-anton text-white mb-2">13</div>
-                    <h4 class="font-anton text-xl uppercase">SIGAP-K3DISTRIK</h4>
-                    <p class="text-gray-500 text-[10px] mt-2 tracking-widest uppercase text-gray-500">Digitalisasi Keselamatan</p>
+                    <h4 class="font-anton text-xl uppercase text-white">SIGAP-K3DISTRIK</h4>
+                    <p class="text-gray-500 text-[10px] mt-2 tracking-widest uppercase">Digitalisasi Keselamatan</p>
                 </div>
             </div>
 
@@ -351,14 +399,14 @@
     <footer id="contact" class="max-w-[1400px] mx-auto px-6 py-40 border-t border-white/5 reveal">
         <div class="grid md:grid-cols-2 gap-20 items-center">
             <div>
-                <h2 class="text-6xl md:text-8xl font-anton uppercase leading-none mb-10 text-white">Ayo Membangun <br><span class="text-blue-600 text-blue-600">Bersama.</span></h2>
+                <h2 class="text-6xl md:text-8xl font-anton uppercase leading-none mb-10 text-white">Ayo Membangun <br><span class="text-blue-600">Bersama.</span></h2>
                 <div class="flex gap-4">
                     <a href="mailto:andika.satria.tele423@polban.ac.id" class="bg-white text-black font-black px-8 py-4 uppercase text-xs hover:bg-blue-600 hover:text-white transition-all">Mulai Proyek</a>
                     <a href="https://linkedin.com/in/andikasatria" target="_blank" class="border border-white/20 font-black px-8 py-4 uppercase text-xs hover:bg-white hover:text-black transition-all text-white">LinkedIn</a>
                 </div>
             </div>
             <div class="space-y-6">
-                <p class="text-gray-500 font-bold uppercase tracking-widest text-xs text-gray-500">Berbasis di Bandung, Indonesia</p>
+                <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Berbasis di Bandung, Indonesia</p>
                 <div class="text-3xl md:text-5xl font-light text-gray-400">
                     Menghubungkan <span class="italic font-bold text-white">Ide Elektronika</span> dengan <span class="italic font-bold text-white">Eksekusi Nyata</span>.
                 </div>
@@ -373,29 +421,65 @@
     </footer>
 
     <script>
-        // Interaktivitas ID Badge 3D
+        // 3D & Drag ID Badge Logic
         const card = document.getElementById('interactiveCard');
-        const wrapper = card.parentElement;
+        const dragArea = document.getElementById('dragArea');
+
+        let isDragging = false;
+        let startX, startY;
+        let currentX = 0, currentY = 0;
+
+        // Mouse Interactions
+        dragArea.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX - currentX;
+            startY = e.clientY - currentY;
+            card.style.transition = 'transform 0.1s ease-out';
+        });
 
         document.addEventListener('mousemove', (e) => {
-            const rect = wrapper.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            if (!isDragging) {
+                // Hover 3D Tilt Effect
+                const rect = dragArea.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
+                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(50px)`;
+                }
+                return;
+            }
+
+            // Drag Pull Effect
+            currentX = e.clientX - startX;
+            currentY = e.clientY - startY;
             
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 15;
-            const rotateY = (centerX - x) / 15;
-            
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            // Apply limits so it doesn't fly away
+            const limit = 150;
+            currentX = Math.max(-limit, Math.min(limit, currentX));
+            currentY = Math.max(0, Math.min(limit * 2, currentY)); // Can only pull down significantly
+
+            card.style.transform = `translate(${currentX}px, ${currentY}px) rotateX(${currentY/10}deg) rotateY(${-currentX/10}deg)`;
         });
 
-        wrapper.addEventListener('mouseleave', () => {
-            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            // Snap back with elastic effect
+            card.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            card.style.transform = 'translate(0, 0) rotateX(0deg) rotateY(0deg)';
+            currentX = 0;
+            currentY = 0;
         });
 
-        // Animasi Reveal saat Scroll
+        // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
