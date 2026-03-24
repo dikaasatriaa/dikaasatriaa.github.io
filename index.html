@@ -29,7 +29,7 @@
         .font-anton { font-family: 'Anton', sans-serif; text-transform: uppercase; }
         .font-heading { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Premium Visual Elements */
+        /* Elemen Visual Premium */
         .bg-grain {
             position: fixed;
             inset: 0;
@@ -50,11 +50,11 @@
             pointer-events: none;
         }
 
-        /* Custom Cursor */
+        /* Kursor Kustom */
         #cursor {
             position: fixed;
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             background: #fff;
             border-radius: 50%;
             pointer-events: none;
@@ -63,26 +63,38 @@
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Arsitektur Layout Hero - Dibuat Sangat Padat */
+        /* Arsitektur Layout Hero - Distribusi 3 Kolom Utama */
         .hero-container {
             position: relative;
             min-height: 100vh;
             display: grid;
-            /* Kolom 1: Teks Utama | Kolom 2: Area Kartu ID | Kolom 3: Teks Vertikal Raksasa */
+            /* Kolom 1: Teks Utama | Kolom 2: Area Kartu ID | Kolom 3: Branding Vertikal */
             grid-template-columns: 1fr 1fr 180px; 
             align-items: center;
             padding: 0 0 0 60px;
             overflow: visible;
         }
 
+        /* Navigasi */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 200;
+            padding: 40px 60px;
+            mix-blend-difference: exclusion;
+        }
+
         .hero-title-container {
             position: relative;
             z-index: 20;
             pointer-events: none;
+            margin-top: 60px; /* Tambah jarak agar tidak numpuk dengan navigasi */
         }
 
         .hero-title {
-            font-size: clamp(4.5rem, 14vw, 15rem);
+            font-size: clamp(4rem, 13vw, 14.5rem);
             line-height: 0.78;
             letter-spacing: -0.05em;
         }
@@ -92,7 +104,7 @@
             -webkit-text-stroke: 1.5px var(--blue-brand);
         }
 
-        /* Branding Vertikal Sisi Kanan - Dibuat Lebih Sangar dan Tinggi */
+        /* Branding Vertikal Sisi Kanan - Sekarang Bersih Tanpa Box Belakang */
         .branding-sidebar {
             height: 100vh;
             display: flex;
@@ -100,25 +112,24 @@
             justify-content: center;
             position: relative;
             z-index: 20;
-            background: rgba(0, 56, 255, 0.02);
-            border-left: 1px solid rgba(0, 56, 255, 0.2);
+            background: transparent; /* Hilangkan warna background pengganggu */
+            border-left: none; /* Hilangkan garis kiri pengganggu */
         }
 
         .vertical-box {
             writing-mode: vertical-rl;
             transform: rotate(180deg);
             padding: 80px 25px;
-            border: 4px solid var(--blue-brand); /* Border lebih tebal */
+            border: 4px solid var(--blue-brand); /* Tetap dengan border biru petir */
             font-family: 'Anton';
-            font-size: clamp(2.5rem, 5vw, 6.5rem); /* Ukuran font lebih besar */
+            font-size: clamp(2.5rem, 5vw, 6.5rem);
             color: var(--blue-brand);
             text-align: center;
-            letter-spacing: 0.25em; /* Letter spacing tinggi agar tidak buntet */
+            letter-spacing: 0.3em; /* Sangat lebar agar sangar dan tinggi */
             white-space: nowrap;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 30px rgba(0, 56, 255, 0.1);
         }
 
         /* Badge Center System */
@@ -134,12 +145,12 @@
         }
 
         .id-card {
-            width: 340px; /* Sedikit lebih lebar */
-            height: 520px; /* Sedikit lebih tinggi */
+            width: 330px;
+            height: 510px;
             background: #fff;
             color: #000;
             border-radius: 2px;
-            padding: 28px;
+            padding: 26px;
             transform-style: preserve-3d;
             box-shadow: 0 50px 150px -30px rgba(0,0,0,0.9);
             position: relative;
@@ -151,8 +162,8 @@
         }
 
         .card-hole {
-            width: 55px;
-            height: 14px;
+            width: 50px;
+            height: 12px;
             background: #000;
             border-radius: 20px;
             position: absolute;
@@ -177,9 +188,10 @@
         .lanyard-strap {
             fill: none;
             stroke: var(--blue-brand);
-            stroke-width: 45;
+            stroke-width: 42;
             stroke-linecap: round;
             stroke-linejoin: round;
+            opacity: 0.9;
         }
 
         .metal-clip {
@@ -188,7 +200,7 @@
             stroke-width: 0.5;
         }
 
-        /* Photo Spotlight Interaction */
+        /* Efek Spotlight Foto Profil */
         .photo-frame {
             width: 100%;
             aspect-ratio: 4/5;
@@ -220,7 +232,7 @@
             filter: grayscale(0) brightness(1.1);
         }
 
-        /* Content Sections */
+        /* Deskripsi & Konten */
         .editorial-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -256,11 +268,6 @@
             transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .project-block:hover img {
-            filter: grayscale(0) brightness(1);
-            transform: scale(1.02);
-        }
-
         .project-num {
             font-family: 'Anton';
             font-size: 10rem;
@@ -283,8 +290,8 @@
         }
 
         .bio-text {
-            font-size: clamp(0.9rem, 1.2vw, 1.15rem);
-            max-width: 550px;
+            font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+            max-width: 520px;
             line-height: 1.5;
             color: #777;
             margin-top: 4vh;
@@ -299,8 +306,8 @@
     <div class="bg-grain"></div>
     <div class="ambient-light"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-[200] px-12 py-10 flex justify-between items-center mix-blend-difference text-white">
+    <!-- Navigasi - Jarak dipastikan aman -->
+    <nav class="flex justify-between items-center text-white">
         <span class="font-bold text-xl tracking-tighter uppercase">Andika Satria <span class="text-blue-600">/</span> Archive Vol. 01</span>
         <div class="flex gap-14 text-[9px] font-bold uppercase tracking-[0.4em]">
             <a href="#showcase" class="hover:text-blue-600 transition-all">Archive</a>
@@ -314,8 +321,9 @@
         <!-- Kolom 1: Teks Utama -->
         <div class="hero-title-container">
             <div class="reveal">
-                <span class="text-[9px] font-bold tracking-[0.6em] text-blue-600 uppercase mb-8 block">Project Showcase • 2023—2026</span>
-                <h1 class="hero-title font-anton leading-[0.8]">
+                <!-- Label diposisikan ulang agar tidak numpuk navigasi -->
+                <span class="text-[9px] font-bold tracking-[0.6em] text-blue-600 uppercase mb-10 block">Project Showcase • 2023—2026</span>
+                <h1 class="hero-title font-anton leading-[0.82]">
                     DESIGN<br>
                     <span class="text-outline">CASE</span><br>
                     ARCHIVE
@@ -343,7 +351,7 @@
                     </filter>
                 </defs>
 
-                <!-- Tali Biru Bentuk V Tajam di Belakang -->
+                <!-- Tali Biru Bentuk V Tajam -->
                 <path id="strap-path" class="lanyard-strap" d="M 50,0 L 400,450 L 750,0" filter="url(#softShadow)" />
                 
                 <!-- Fixed Silver Hook -->
@@ -361,7 +369,6 @@
                     <span class="text-[7px] font-black tracking-widest text-gray-400">ID: 2313-PB-X</span>
                 </div>
                 
-                <!-- Interactive Photo with Spotlight -->
                 <div class="photo-frame" id="photoFrame">
                     <img src="dikas.jpg" alt="Andika Satria" class="photo-base">
                     <img src="dikas.jpg" alt="Andika Satria" class="photo-spotlight" id="spotlightImg">
@@ -375,13 +382,13 @@
             </div>
         </div>
 
-        <!-- Kolom 3: Teks Vertikal Branding - Font Anton, Tinggi, dan Letter Spacing Luas -->
+        <!-- Kolom 3: Teks Vertikal Branding - Sekarang Bersih Tanpa Box Belakang -->
         <div class="branding-sidebar">
             <div class="vertical-box">ELECTRONICS<br>ENGINEERING</div>
         </div>
     </section>
 
-    <!-- ARCHIVE INDEX -->
+    <!-- ARSIP PROYEK -->
     <main id="showcase" class="py-60">
         <div class="px-10 mb-40 reveal">
             <h3 class="text-6xl lg:text-9xl font-anton leading-none">ARCHIVE<br><span class="text-blue-600 text-outline">WORKS (13)</span></h3>
@@ -412,10 +419,10 @@
 
             <div class="col-span-12 py-32 border-y border-white/5 reveal">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">03</span><p class="text-sm font-bold mt-2 uppercase">AgriSpectra Drone</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">04</span><p class="text-sm font-bold mt-2 uppercase">CHIMOS Poultry AI</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">05</span><p class="text-sm font-bold mt-2 uppercase">IoT Shrimp Farm</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">06</span><p class="text-sm font-bold mt-2 uppercase">ESP32 Min-Sys</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">03</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">AgriSpectra Drone</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">04</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">CHIMOS Poultry AI</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">05</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">IoT Shrimp Farm</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">06</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">ESP32 Min-Sys</p></div>
                 </div>
             </div>
 
@@ -442,7 +449,7 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // PHYSICS ENGINE
+        // MESIN FISIKA
         const card = document.getElementById('interactiveCard');
         const dragArea = document.getElementById('dragArea');
         const strapPath = document.getElementById('strap-path');
@@ -466,13 +473,10 @@
                 y += (e.clientY - lastMouseY);
             }
 
-            // Spotlight Logic relative to moving card
             const rect = photoFrame.getBoundingClientRect();
             if (e.clientX >= rect.left && e.clientX <= rect.right && 
                 e.clientY >= rect.top && e.clientY <= rect.bottom) {
-                const localX = e.clientX - rect.left;
-                const localY = e.clientY - rect.top;
-                spotlightImg.style.clipPath = `circle(80px at ${localX}px ${localY}px)`;
+                spotlightImg.style.clipPath = `circle(80px at ${e.clientX - rect.left}px ${e.clientY - rect.top}px)`;
             } else {
                 spotlightImg.style.clipPath = `circle(0px at 50% 50%)`;
             }
@@ -492,13 +496,9 @@
             const daX = 400 + (x * 0.15); 
             const daY = 450 + (y * 0.1);
 
-            // Update Tali V - Memastikan simpul tajam
             strapPath.setAttribute('d', `M 50,0 L ${daX},${daY} L 750,0`);
-            
-            // Fixed Silver Hook
             clipGroup.setAttribute('transform', `translate(${x * 0.15}, ${y * 0.1})`);
             
-            // Card ID swing
             const rotX = y / 16 + vy * 1.5;
             const rotY = -x / 16 - vx * 1.5;
             card.style.transform = `translate(${x}px, ${y}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
