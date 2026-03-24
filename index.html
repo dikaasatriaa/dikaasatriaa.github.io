@@ -76,6 +76,7 @@
             border-left: 2px solid rgba(255,255,255,0.2);
             padding-left: 1.5rem;
             position: relative;
+            height: 100%;
         }
 
         .experience-card::before {
@@ -106,7 +107,7 @@
 
     <!-- Header / Branding -->
     <nav class="p-6 flex justify-between items-center relative z-10">
-        <span class="font-bold tracking-tighter text-xl">B A P O <span class="text-blue-400">—</span> ENGINEER</span>
+        <span class="font-bold tracking-tighter text-xl uppercase tracking-widest">A S P <span class="text-blue-400">—</span> ENGINEER</span>
         <span class="text-sm opacity-60">2023 — 2026</span>
     </nav>
 
@@ -116,20 +117,18 @@
             PORT<br>FOLIO
         </div>
         
-        <!-- Floating Element: Microchip (Replacement for floppy disk) -->
+        <!-- Floating Element -->
         <div class="absolute top-1/4 left-10 md:left-40 floating hidden md:block z-20">
             <div class="glass-sticker p-4 rounded-lg w-32 shadow-2xl">
-                <div class="bg-blue-600 w-full h-20 rounded mb-2 flex items-center justify-center text-xs font-bold text-center leading-tight">
+                <div class="bg-blue-600 w-full h-20 rounded mb-2 flex items-center justify-center text-xs font-bold text-center leading-tight uppercase">
                     CV<br>ANDIKA S.
                 </div>
                 <div class="text-[10px] font-bold opacity-70">RESUME 2026</div>
             </div>
         </div>
 
-        <!-- Hero Image Mockup (Robot/Human Pose like reference) -->
         <div class="mt-[-80px] md:mt-[-150px] relative z-10 flex justify-center">
             <div class="w-[300px] md:w-[500px] grayscale contrast-125 hover:grayscale-0 transition-all duration-700">
-                <!-- Using SVG to represent a technical engineering pose if no image -->
                 <svg viewBox="0 0 200 200" class="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                     <defs>
                         <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -147,18 +146,16 @@
     <!-- ABOUT SECTION -->
     <main class="max-w-6xl mx-auto px-6 mt-20 grid grid-cols-1 md:grid-cols-12 gap-12 relative z-20">
         
-        <!-- Left Side: Intro -->
         <div class="md:col-span-8">
             <div class="mb-10">
-                <span class="section-tag font-inter uppercase">about me</span>
+                <span class="section-tag font-inter uppercase text-black">about me</span>
             </div>
             
             <div class="flex flex-col md:flex-row gap-8 items-start">
                 <div class="w-full md:w-1/3">
                     <div class="border-4 border-white p-2">
-                        <!-- Use the user's name as visual element -->
                         <div class="bg-neutral-800 aspect-[3/4] flex items-end p-4">
-                            <h2 class="text-4xl font-anton leading-none">ANDIKA<br>SATRIA</h2>
+                            <h2 class="text-4xl font-anton leading-none uppercase">ANDIKA<br>SATRIA</h2>
                         </div>
                     </div>
                     <div class="mt-4 flex gap-2 overflow-x-auto text-[10px] font-bold">
@@ -176,99 +173,179 @@
                         <span>@dikaasatriaa</span>
                     </div>
                     <p class="text-xl md:text-2xl font-light leading-relaxed mb-8">
-                        Mahasiswa <span class="font-bold border-b-2 border-blue-500">Teknik Elektronika</span> yang fokus pada riset sistem cerdas, otomasi industri, dan <span class="italic">embedded systems</span>. Terampil dalam integrasi sensor dan perancangan sistem kontrol presisi.
+                        Mahasiswa <span class="font-bold border-b-2 border-blue-500 text-white">Teknik Elektronika</span> yang fokus pada riset sistem cerdas, otomasi industri, dan <span class="italic text-white">embedded systems</span>. Terampil dalam integrasi sensor dan perancangan sistem kontrol presisi.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- Right Side: Contact / Skills (Following the reference layout) -->
         <div class="md:col-span-4 space-y-12">
             <div>
                 <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-50">Contract / Socials</h4>
-                <ul class="space-y-2 font-bold text-lg">
-                    <li><a href="#" class="hover:text-blue-500">andika.satria.tele423@polban.ac.id</a></li>
-                    <li><a href="https://linkedin.com/in/andikasatria" class="hover:text-blue-500">LinkedIn. /andikasatria</a></li>
-                    <li><a href="https://instagram.com/dikaasatriaa" class="hover:text-blue-500">Instagram. @dikaasatriaa</a></li>
+                <ul class="space-y-2 font-bold text-sm md:text-lg">
+                    <li><a href="mailto:andika.satria.tele423@polban.ac.id" class="hover:text-blue-500 break-all">andika.satria.tele423@polban.ac.id</a></li>
+                    <li><a href="https://linkedin.com/in/andikasatria" target="_blank" class="hover:text-blue-500">LinkedIn. /andikasatria</a></li>
+                    <li><a href="https://instagram.com/dikaasatriaa" target="_blank" class="hover:text-blue-500">Instagram. @dikaasatriaa</a></li>
                 </ul>
             </div>
 
             <div>
                 <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-50">Core Skills</h4>
-                <div class="grid grid-cols-2 gap-2 text-xs font-bold">
-                    <div class="bg-white text-black p-3 rounded">INTOUCH HMI/SCADA</div>
-                    <div class="bg-blue-600 p-3 rounded">LABVIEW</div>
-                    <div class="border border-white/20 p-3 rounded">PLC PROGRAMMING</div>
-                    <div class="border border-white/20 p-3 rounded">ARDUINO / C++</div>
-                    <div class="border border-white/20 p-3 rounded">FLUTTER / FIREBASE</div>
-                    <div class="border border-white/20 p-3 rounded">PROTEUS / MATLAB</div>
+                <div class="grid grid-cols-2 gap-2 text-[10px] md:text-xs font-bold uppercase">
+                    <div class="bg-white text-black p-3 rounded">HMI/SCADA</div>
+                    <div class="bg-blue-600 p-3 rounded text-white">LabVIEW</div>
+                    <div class="border border-white/20 p-3 rounded">PLC / IoT</div>
+                    <div class="border border-white/20 p-3 rounded">PCB Design</div>
+                    <div class="border border-white/20 p-3 rounded">AI / Python</div>
+                    <div class="border border-white/20 p-3 rounded">Embedded Sys</div>
                 </div>
             </div>
         </div>
 
-        <!-- EXPERIENCES SECTION (3 Columns like reference) -->
+        <!-- EXPERIENCES -->
         <div class="md:col-span-12 mt-10">
-            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-8 opacity-50">Work Experiences</h4>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-8 opacity-50">Professional Experiences</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="experience-card">
-                    <span class="text-xs opacity-50 font-bold">2024 — 2025</span>
-                    <h3 class="text-xl font-bold mt-2">PT Forsta Kalmedic Global</h3>
-                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Engineer Team - Intern</p>
-                    <p class="text-sm opacity-70">Optimalisasi sistem SCADA dan pemeliharaan mesin HVAC di industri farmasi.</p>
+                    <span class="text-xs opacity-50 font-bold uppercase">2026 — SEKARANG</span>
+                    <h3 class="text-lg font-bold mt-2 uppercase">CITA ITB</h3>
+                    <p class="text-[10px] text-blue-400 font-bold mb-4 uppercase">Research Assistant - Part Time</p>
+                    <p class="text-xs opacity-70">Riset berkelanjutan pada teknologi instrumentasi dan sistem otomasi cerdas.</p>
                 </div>
                 <div class="experience-card">
-                    <span class="text-xs opacity-50 font-bold">2024 — SEKARANG</span>
-                    <h3 class="text-xl font-bold mt-2">CITA ITB</h3>
-                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Assistant Researcher</p>
-                    <p class="text-sm opacity-70">Riset teknologi instrumentasi dan pengembangan prototipe sistem kendali cerdas.</p>
+                    <span class="text-xs opacity-50 font-bold uppercase">2025</span>
+                    <h3 class="text-lg font-bold mt-2 uppercase">CITA ITB</h3>
+                    <p class="text-[10px] text-blue-400 font-bold mb-4 uppercase">Research Assistant - Intern</p>
+                    <p class="text-xs opacity-70">Design Signal Conditioning, 3D Modeling komponen motor, dan pengembangan Weather Station.</p>
                 </div>
                 <div class="experience-card">
-                    <span class="text-xs opacity-50 font-bold">2024 — 2025</span>
-                    <h3 class="text-xl font-bold mt-2">ELTRAS Radio</h3>
-                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Personalia Manager</p>
-                    <p class="text-sm opacity-70">Manajemen strategi organisasi dan kepemimpinan tim lintas divisi.</p>
+                    <span class="text-xs opacity-50 font-bold uppercase">2023</span>
+                    <h3 class="text-lg font-bold mt-2 uppercase">SMKN 1 Cimahi</h3>
+                    <p class="text-[10px] text-blue-400 font-bold mb-4 uppercase">Technical Instructor</p>
+                    <p class="text-xs opacity-70">Mentor tim Mobile Robotics yang meraih <span class="text-white font-bold">Juara 1 LKS Jawa Barat</span>.</p>
+                </div>
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">2023</span>
+                    <h3 class="text-lg font-bold mt-2 uppercase">PT Forsta Kalmedic</h3>
+                    <p class="text-[10px] text-blue-400 font-bold mb-4 uppercase">Engineer Team - Intern</p>
+                    <p class="text-xs opacity-70">Operasi & pemeliharaan AHU/HVAC systems serta integrasi sistem SCADA farmasi.</p>
                 </div>
             </div>
         </div>
 
-        <!-- PROJECTS / ACHIEVEMENTS (Big Section) -->
+        <!-- HONORS & AWARDS (Major Update based on LinkedIn Screenshots) -->
         <div class="md:col-span-12 mt-20">
             <div class="mb-10 flex justify-between items-end">
-                <span class="section-tag font-inter uppercase">awards & projects</span>
-                <span class="text-6xl font-anton opacity-10">PROJECTS</span>
+                <span class="section-tag font-inter uppercase text-black">Honors & Awards</span>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Achievement 1 -->
-                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
-                    <span class="text-4xl font-anton mb-2">01</span>
-                    <h3 class="text-xl font-bold">MEDZAI</h3>
-                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Juara 1 FUSE 2025 - IoT monitoring pasien DBD.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 1st Place FUSE -->
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">Issued Nov 2025</span>
+                    <h3 class="text-xl font-bold mt-2 uppercase text-blue-500">1st Place Winner - IoT Competition FUSE 2025</h3>
+                    <p class="text-[10px] opacity-60 mb-4 uppercase">Issued by Politeknik Manufaktur Bandung</p>
+                    <p class="text-xs opacity-70 mb-4 leading-relaxed">
+                        Mengembangkan **"Medzai"** — Sistem asistensi medis untuk pasien DBD berbasis AI. Berkontribusi pada desain PCB, integrasi hardware, pengembangan firmware, hingga dashboard monitoring berbasis web.
+                    </p>
                 </div>
-                <!-- Achievement 2 -->
-                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
-                    <span class="text-4xl font-anton mb-2">02</span>
-                    <h3 class="text-xl font-bold">GOLD MEDAL</h3>
-                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Indonesia Inventors Day 2025 - Special Award.</p>
+
+                <!-- Gold Medal IID -->
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">Issued Sep 2025</span>
+                    <h3 class="text-xl font-bold mt-2 uppercase text-blue-500">Gold Medal & Special Award - Indonesia Inventors Day 2025</h3>
+                    <p class="text-[10px] opacity-60 mb-4 uppercase">IID 2025 / Pi-ENVEX Special Award</p>
+                    <p class="text-xs opacity-70 mb-4 leading-relaxed">
+                        Proyek **"V-COMS"** (Vehicle Classification and Carbon Emission Monitoring System). Menggunakan *Computer Vision* dan *Machine Learning* untuk klasifikasi kendaraan dan estimasi emisi karbon demi target Net Zero Emission.
+                    </p>
                 </div>
-                <!-- Achievement 3 -->
-                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
-                    <span class="text-4xl font-anton mb-2">03</span>
-                    <h3 class="text-xl font-bold">V-PALM DRONE</h3>
-                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Verifikasi karbon kelapa sawit berbasis AI & Drone.</p>
+
+                <!-- 2nd Place AITEC -->
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">Issued Sep 2025</span>
+                    <h3 class="text-xl font-bold mt-2 uppercase text-blue-500">2nd Winner - Agricultural Innovation AITEC 2025</h3>
+                    <p class="text-[10px] opacity-60 mb-4 uppercase">Issued by State Polytechnic of Jember</p>
+                    <p class="text-xs opacity-70 mb-4 leading-relaxed">
+                        Proyek **"AgriSpectra"** — Integrasi Drone Multispektoral dan sensor tanah untuk monitoring tanaman presisi. Berperan sebagai integrasi sistem hardware dan embedded firmware.
+                    </p>
                 </div>
-                <!-- Achievement 4 -->
-                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
-                    <span class="text-4xl font-anton mb-2">04</span>
-                    <h3 class="text-xl font-bold">HAKI</h3>
-                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Algoritma Monitoring Kualitas Air Sungai.</p>
+
+                <!-- 3rd Place ERIC -->
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">Issued Sep 2025</span>
+                    <h3 class="text-xl font-bold mt-2 uppercase text-blue-500">3rd Place Winner - International Research ERIC 2025</h3>
+                    <p class="text-[10px] opacity-60 mb-4 uppercase">International Research Innovation Challenge</p>
+                    <p class="text-xs opacity-70 mb-4 leading-relaxed">
+                        Proyek **"CHIMOS"** — Sistem monitoring cerdas untuk kandang ayam berbasis AI. Menggunakan sensor amonia, suhu, kelembaban, dan suara ayam yang dikirim via jaringan LoRa.
+                    </p>
+                </div>
+
+                <!-- 1st Place LKS Provincial -->
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">Issued Jul 2022</span>
+                    <h3 class="text-xl font-bold mt-2 uppercase text-blue-500">1st Place - LKS Mobile Robotics (Provincial)</h3>
+                    <p class="text-[10px] opacity-60 mb-4 uppercase">Issued by Dinas Pendidikan Jawa Barat</p>
+                    <p class="text-xs opacity-70 mb-4 leading-relaxed">
+                        Merancang dan memprogram robot mobile yang melibatkan integrasi sensor, logika kendali, dan hardware elektronik untuk operasi otonom. Berhasil melaju ke tingkat Nasional.
+                    </p>
+                </div>
+
+                <!-- PKM-KC -->
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">Issued Nov 2024</span>
+                    <h3 class="text-xl font-bold mt-2 uppercase text-blue-500">Grant Recipient - PKM-Karsa Cipta 2024</h3>
+                    <p class="text-[10px] opacity-60 mb-4 uppercase">Ministry of Education & Culture RI</p>
+                    <p class="text-xs opacity-70 mb-4 leading-relaxed">
+                        Sistem optimalisasi tambak udang berbasis IoT. Berkontribusi pada arsitektur sistem, integrasi sensor akuatik, dan pengembangan sistem embedded untuk efisiensi operasional.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECHNICAL PROJECTS -->
+        <div class="md:col-span-12 mt-20">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-8 opacity-50">Engineering Projects</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="experience-card">
+                    <h3 class="text-xl font-bold mt-2 uppercase">ESP32 Minimum System</h3>
+                    <p class="text-xs opacity-70 mb-4">Desain PCB kustom, skematik, dan layout untuk kontrol suhu closed-loop tanpa board komersial.</p>
+                </div>
+                <div class="experience-card">
+                    <h3 class="text-xl font-bold mt-2 uppercase">LoRa Flood EWS</h3>
+                    <p class="text-xs opacity-70 mb-4">Peringatan dini banjir berbasis LoRa dengan sensor JSN-SR04T dan integrasi bot Telegram.</p>
+                </div>
+                <div class="experience-card">
+                    <h3 class="text-xl font-bold mt-2 uppercase">KMLI 2023 Equipment</h3>
+                    <p class="text-xs opacity-70 mb-4">Pemrograman Visual Basic dan sensor Arduino untuk sistem indikator Kontes Mobil Listrik Indonesia.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="md:col-span-12 mt-20">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-8 opacity-50">Education History</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">2023 — 2027</span>
+                    <h3 class="text-2xl font-bold mt-2 uppercase">Politeknik Negeri Bandung</h3>
+                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Teknik Elektro dan Listrik - D4 (IPK 3.56)</p>
+                </div>
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold uppercase">2020 — 2023</span>
+                    <h3 class="text-2xl font-bold mt-2 uppercase">SMK Negeri 1 Cimahi</h3>
+                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Industrial Electronics Engineering (Grade 86)</p>
+                    <div class="flex flex-wrap gap-2 mt-4 uppercase">
+                        <span class="bg-white/5 px-2 py-1 text-[9px] font-bold border border-white/10">Robotics</span>
+                        <span class="bg-white/5 px-2 py-1 text-[9px] font-bold border border-white/10">Marching Band</span>
+                        <span class="bg-white/5 px-2 py-1 text-[9px] font-bold border border-white/10">OSIS</span>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <footer class="mt-40 border-t border-white/10 p-10 text-center">
-        <div class="text-[10rem] font-anton opacity-5 leading-none select-none">ANDIKA SATRIA</div>
+        <div class="text-[5rem] md:text-[10rem] font-anton opacity-5 leading-none select-none uppercase">ANDIKA SATRIA</div>
         <p class="text-xs font-bold tracking-widest opacity-50 mt-10 uppercase">Crafted for the Future of Automation</p>
     </footer>
 
