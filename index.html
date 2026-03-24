@@ -9,7 +9,7 @@
     <style>
         :root {
             --blue-brand: #0038FF;
-            --dark-bg: #060606;
+            --dark-bg: #050505;
         }
 
         * { 
@@ -29,32 +29,21 @@
         .font-anton { font-family: 'Anton', sans-serif; text-transform: uppercase; }
         .font-heading { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Estetika Desain Grafis: Grain & Glow */
+        /* Estetika Desain Grafis */
         .bg-grain {
             position: fixed;
             inset: 0;
             background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.12;
+            opacity: 0.08;
             pointer-events: none;
             z-index: 100;
         }
 
-        .gradient-glow {
-            position: fixed;
-            width: 70vw;
-            height: 70vw;
-            background: radial-gradient(circle, rgba(0, 56, 255, 0.06) 0%, transparent 70%);
-            top: -30vw;
-            right: -20vw;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Custom Cursor Minimalis */
+        /* Custom Cursor */
         #cursor {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background: #fff;
             border-radius: 50%;
             pointer-events: none;
@@ -63,16 +52,16 @@
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Hero Layout */
+        /* Hero Section */
         .hero-title {
-            font-size: clamp(4rem, 14vw, 14rem);
-            line-height: 0.8;
+            font-size: clamp(3.5rem, 12vw, 11rem);
+            line-height: 0.85;
             letter-spacing: -0.04em;
         }
 
         .text-outline {
             color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
         }
 
         /* Lanyard System */
@@ -87,11 +76,11 @@
         }
 
         .id-card {
-            width: 290px;
-            height: 450px;
+            width: 280px;
+            height: 440px;
             background: #fff;
             color: #000;
-            border-radius: 4px;
+            border-radius: 2px;
             padding: 24px;
             transform-style: preserve-3d;
             box-shadow: 0 40px 90px -20px rgba(0,0,0,0.8);
@@ -101,7 +90,7 @@
 
         #lanyard-svg {
             position: absolute;
-            top: -250px;
+            top: -200px;
             left: 50%;
             transform: translateX(-50%);
             width: 600px;
@@ -110,10 +99,10 @@
             z-index: 5;
         }
 
-        .strap { fill: none; stroke: #121212; stroke-width: 18; stroke-linecap: round; }
+        .strap { fill: none; stroke: #121212; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
         .cord { fill: none; stroke: #444; stroke-width: 2.5; }
 
-        /* Dynamic Editorial Grid */
+        /* Editorial Grid */
         .editorial-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -124,21 +113,20 @@
         .project-block {
             grid-column: span 12;
             position: relative;
-            margin-bottom: 15vh;
+            margin-bottom: 12vh;
         }
 
         @media (min-width: 1024px) {
-            .block-large { grid-column: span 8; }
-            .block-medium { grid-column: span 6; }
-            .block-small { grid-column: span 4; }
-            .offset-up { margin-top: -10vh; }
-            .offset-down { margin-top: 10vh; }
+            .block-half { grid-column: span 6; }
+            .block-third { grid-column: span 4; }
+            .block-two-thirds { grid-column: span 8; }
+            .offset-top { margin-top: -15vh; }
         }
 
         .image-box {
             width: 100%;
             aspect-ratio: 16/9;
-            background: #111;
+            background: #0f0f0f;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
@@ -148,28 +136,29 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(1) brightness(0.7);
+            filter: grayscale(1) brightness(0.6);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .project-block:hover img {
             filter: grayscale(0) brightness(1);
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
 
         .project-num {
             font-family: 'Anton';
-            font-size: 8rem;
+            font-size: 6rem;
+            color: var(--blue-brand);
+            opacity: 0.1;
             position: absolute;
-            top: -3rem;
+            top: -2rem;
             left: -1rem;
-            opacity: 0.03;
             z-index: -1;
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(60px);
+            transform: translateY(40px);
             transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
@@ -177,65 +166,56 @@
             transform: translateY(0);
         }
 
-        .marquee-bg {
-            font-family: 'Anton';
-            font-size: 15vw;
-            color: rgba(255,255,255,0.02);
-            white-space: nowrap;
-            position: absolute;
-            z-index: -1;
-            pointer-events: none;
+        footer h2 {
+            font-size: clamp(4rem, 12vw, 15rem);
         }
     </style>
 </head>
 <body class="antialiased">
     <div id="cursor"></div>
     <div class="bg-grain"></div>
-    <div class="gradient-glow"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-[200] px-10 py-10 flex justify-between items-center mix-blend-difference text-white">
-        <span class="font-bold text-xl tracking-tighter uppercase">Andika Satria <span class="text-blue-600">/</span> 2026</span>
-        <div class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em]">
+    <nav class="fixed top-0 w-full z-[200] px-10 py-8 flex justify-between items-center mix-blend-difference text-white">
+        <span class="font-bold text-lg tracking-tight uppercase">Andika Satria <span class="text-blue-600">/</span> Archive 01</span>
+        <div class="flex gap-10 text-[9px] font-bold uppercase tracking-[0.4em]">
             <a href="#showcase" class="hover:text-blue-600 transition-all">Archive</a>
             <a href="#contact" class="hover:text-blue-600 transition-all">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center pt-40 px-10 relative overflow-hidden">
-        <div class="marquee-bg" style="top: 10%;">ENGINEERING MAESTRO • PRECISION</div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
-            <div class="lg:col-span-8">
+    <section class="min-h-screen flex flex-col justify-center pt-32 px-10 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7 z-10">
                 <div class="reveal">
-                    <span class="text-[10px] font-bold tracking-[0.5em] text-blue-600 uppercase mb-10 block">Engineering Showcase v2.0</span>
-                    <h1 class="hero-title font-anton leading-none">
+                    <span class="text-[10px] font-bold tracking-[0.5em] text-blue-600 uppercase mb-8 block">Volume 01: Engineering & Systems</span>
+                    <h1 class="hero-title font-anton leading-none mb-10">
                         DESIGN<br>
-                        <span class="text-outline">DRIVEN</span><br>
+                        <span class="text-outline">REFINED</span><br>
                         <span class="text-white">WORKS.</span>
                     </h1>
                 </div>
-                <div class="reveal mt-16 max-w-2xl">
-                    <p class="text-xl lg:text-4xl font-light text-gray-500 leading-tight">
-                        Mahasiswa Elektronika yang menggabungkan <span class="text-white">estetika visual</span> dengan <span class="text-white italic">logika mesin</span> yang kompleks.
+                <div class="reveal max-w-xl">
+                    <p class="text-lg lg:text-2xl font-light text-gray-400 leading-tight">
+                        Mahasiswa Elektronika yang percaya bahwa setiap sirkuit adalah sebuah <span class="text-white">komposisi desain</span> yang membutuhkan <span class="text-white italic">presisi matematis</span>.
                     </p>
                 </div>
             </div>
             
-            <!-- Realistic Lanyard Section -->
-            <div class="lg:col-span-4 flex justify-center items-center">
+            <div class="lg:col-span-5 flex justify-center items-center mt-10 lg:mt-0">
                 <div class="badge-wrapper" id="dragArea">
                     <svg id="lanyard-svg" viewBox="0 0 600 850">
                         <path id="strap-path" class="strap" d="M 200,50 C 200,10 400,10 400,50 L 400,350 L 300,380 L 200,350 Z" />
-                        <circle id="ring" cx="300" cy="380" r="10" fill="#1a1a1a" stroke="#333" />
+                        <circle id="ring" cx="300" cy="380" r="10" fill="#111" stroke="#222" />
                         <path id="cord-path" class="cord" d="M 300,380 L 300,450" />
                     </svg>
 
                     <div class="id-card" id="interactiveCard">
-                        <div class="w-full flex justify-between items-center mb-8">
-                            <img src="OIP.webp" class="h-6 opacity-70" alt="Polban">
-                            <span class="text-[7px] font-black tracking-widest text-gray-400">ARCHIVE_2313</span>
+                        <div class="w-full flex justify-between items-center mb-6">
+                            <img src="OIP.webp" class="h-6 opacity-60" alt="Polban">
+                            <span class="text-[7px] font-black tracking-widest text-gray-400">ID: 2313-PB</span>
                         </div>
                         
                         <div class="w-full aspect-[4/5] bg-gray-100 mb-6 overflow-hidden grayscale contrast-125 border border-gray-100">
@@ -243,9 +223,9 @@
                         </div>
 
                         <div class="text-left">
-                            <h2 class="text-3xl font-anton leading-none mb-1">A. Satria</h2>
-                            <p class="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-6">Electronics & Mechatronics</p>
-                            <div class="w-full h-8 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)] opacity-40"></div>
+                            <h2 class="text-2xl font-anton leading-none mb-1">A. Satria</h2>
+                            <p class="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-6">Engineering Maestro</p>
+                            <div class="w-full h-8 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)] opacity-30"></div>
                         </div>
                     </div>
                 </div>
@@ -253,141 +233,119 @@
         </div>
     </section>
 
-    <!-- THE 13 PROJECTS INDEX -->
-    <main id="showcase" class="py-60">
-        <div class="px-10 mb-40 reveal">
-            <h3 class="text-6xl lg:text-9xl font-anton leading-none">ARCHIVE<br><span class="text-blue-600">INDEX (13)</span></h3>
-            <p class="text-gray-500 mt-10 max-w-md uppercase text-[10px] font-bold tracking-[0.3em]">Membagi 13 solusi teknis ke dalam hirarki desain industri.</p>
+    <!-- ARCHIVE INDEX (All 13 Projects) -->
+    <main id="showcase" class="py-40">
+        <div class="px-10 mb-32 reveal">
+            <h3 class="text-5xl lg:text-8xl font-anton leading-none">SELECTED<br><span class="text-blue-600 text-outline" style="-webkit-text-stroke: 1px #0038FF;">ARCHIVES (13)</span></h3>
         </div>
 
         <div class="editorial-grid">
             
-            <!-- 01: MEDZAI (Large Highlight) -->
-            <div class="project-block block-large reveal">
+            <!-- 01 & 02: Highlight Group -->
+            <div class="project-block block-two-thirds reveal">
                 <div class="project-num">01</div>
                 <div class="image-box">
-                    <div class="absolute inset-0 flex items-center justify-center text-white/5 font-anton text-[15rem]">DBD</div>
+                    <div class="absolute inset-0 flex items-center justify-center text-white/5 font-anton text-[12rem]">MEDZAI</div>
                 </div>
-                <div class="mt-10 flex justify-between items-start">
-                    <div class="max-w-xl">
-                        <h4 class="text-5xl font-anton mb-4">MEDZAI Health Monitor</h4>
-                        <p class="text-gray-400 text-lg leading-relaxed">Juara 1 FUSE 2025. Implementasi AI untuk monitoring pasien DBD secara real-time dengan integrasi hardware biomedis.</p>
-                    </div>
-                    <span class="text-[10px] font-bold bg-blue-600 px-3 py-1 uppercase tracking-widest">Champion</span>
+                <div class="mt-8">
+                    <h4 class="text-4xl font-anton mb-2">MEDZAI Health Monitor</h4>
+                    <p class="text-gray-500 text-sm max-w-lg">Juara 1 FUSE 2025. Monitoring DBD berbasis AI dengan integrasi sistem sensor biomedis tinggi.</p>
                 </div>
             </div>
 
-            <!-- 02: V-COMS (Medium) -->
-            <div class="project-block block-medium offset-down reveal">
+            <div class="project-block block-third offset-top reveal">
                 <div class="project-num">02</div>
-                <div class="image-box aspect-square">
-                    <div class="absolute inset-0 flex items-center justify-center text-white/5 font-anton text-9xl">VISION</div>
+                <div class="image-box aspect-[3/4]">
+                    <div class="absolute inset-0 flex items-center justify-center text-white/5 font-anton text-8xl">VISION</div>
                 </div>
-                <div class="mt-10">
-                    <h4 class="text-4xl font-anton mb-4">V-COMS AI Vision</h4>
-                    <p class="text-gray-400">Medali Emas IID 2025. Klasifikasi kendaraan dan estimasi emisi karbon menggunakan Computer Vision.</p>
-                    <span class="inline-block mt-6 text-[10px] font-bold text-yellow-500 border border-yellow-500/30 px-3 py-1 uppercase">Gold Medal</span>
+                <div class="mt-8">
+                    <h4 class="text-3xl font-anton mb-2">V-COMS AI</h4>
+                    <p class="text-gray-500 text-xs">Medali Emas IID 2025. Computer Vision untuk analisis emisi karbon kendaraan.</p>
                 </div>
             </div>
 
-            <!-- 03: AGRISPECTRA -->
-            <div class="project-block block-medium reveal">
+            <!-- 03, 04, 05: Grid Row -->
+            <div class="project-block block-third reveal">
                 <div class="project-num">03</div>
-                <div class="image-box"></div>
-                <div class="mt-10">
-                    <h4 class="text-4xl font-anton mb-4">AgriSpectra Drone</h4>
-                    <p class="text-gray-400">Juara 2 AITEC 2025. Integrasi Drone Multispektoral untuk optimasi pertanian presisi.</p>
-                </div>
+                <h4 class="text-2xl font-anton text-blue-600 mb-2">AgriSpectra Drone</h4>
+                <p class="text-gray-500 text-xs">Juara 2 AITEC 2025. Optimasi pertanian presisi melalui drone multispektoral.</p>
             </div>
-
-            <!-- 04: CHIMOS -->
-            <div class="project-block block-small reveal">
+            <div class="project-block block-third reveal">
                 <div class="project-num">04</div>
-                <div class="image-box"></div>
-                <div class="mt-10">
-                    <h4 class="text-3xl font-anton mb-2 text-blue-600">CHIMOS Poultry</h4>
-                    <p class="text-gray-500 text-sm">Juara 3 ERIC 2025. Smart monitoring kandang ayam berbasis jaringan LoRa.</p>
-                </div>
+                <h4 class="text-2xl font-anton mb-2">CHIMOS Poultry AI</h4>
+                <p class="text-gray-500 text-xs">Juara 3 ERIC 2025. Smart monitoring kandang ayam berbasis jaringan LoRa.</p>
             </div>
-
-            <!-- 05: SHRIMP FARM -->
-            <div class="project-block block-small offset-up reveal">
+            <div class="project-block block-third reveal">
                 <div class="project-num">05</div>
-                <div class="image-box aspect-[3/4]"></div>
-                <div class="mt-10">
-                    <h4 class="text-3xl font-anton mb-2">IoT Shrimp Farm</h4>
-                    <p class="text-gray-500 text-sm">PKM-KC 2024. Automasi ekosistem tambak udang cerdas.</p>
-                </div>
+                <h4 class="text-2xl font-anton mb-2">IoT Shrimp Farm</h4>
+                <p class="text-gray-500 text-xs">PKM-KC 2024. Automasi ekosistem tambak udang cerdas untuk kualitas air.</p>
             </div>
 
-            <!-- 06: ESP32 MIN SYSTEM -->
-            <div class="project-block block-small reveal">
+            <!-- 06: ESP32 Large -->
+            <div class="project-block block-half reveal">
                 <div class="project-num">06</div>
-                <div class="image-box aspect-square"></div>
-                <div class="mt-10">
+                <div class="image-box aspect-video"></div>
+                <div class="mt-8">
                     <h4 class="text-3xl font-anton mb-2">ESP32 Min-System</h4>
-                    <p class="text-gray-500 text-sm">Custom PCB Design untuk kontrol suhu sistem closed-loop.</p>
+                    <p class="text-gray-500 text-sm">Custom PCB Design untuk kontrol suhu sistem closed-loop tanpa board komersial.</p>
                 </div>
             </div>
 
-            <!-- 07: LORA FLOOD -->
-            <div class="project-block block-medium reveal">
+            <!-- 07: LoRa Flood -->
+            <div class="project-block block-half reveal">
                 <div class="project-num">07</div>
-                <h4 class="text-5xl font-anton mb-4">LoRa Flood EWS</h4>
-                <p class="text-gray-400 text-lg">Peringatan dini banjir jarak jauh dengan integrasi bot Telegram.</p>
+                <div class="image-box aspect-video"></div>
+                <div class="mt-8">
+                    <h4 class="text-3xl font-anton mb-2 text-blue-600">LoRa Flood EWS</h4>
+                    <p class="text-gray-500 text-sm">Sistem peringatan banjir jarak jauh dengan integrasi bot Telegram & Web UI.</p>
+                </div>
             </div>
 
-            <!-- 08: KMLI INDICATOR -->
-            <div class="project-block block-medium reveal text-right">
-                <div class="project-num">08</div>
-                <h4 class="text-5xl font-anton mb-4">KMLI Indicator</h4>
-                <p class="text-gray-400 text-lg">Sistem indikator Kontes Mobil Listrik berbasis VB.NET & Arduino.</p>
-            </div>
-
-            <!-- 09 & 10: LKS ROBOTICS (Grouped Design) -->
-            <div class="col-span-12 py-40 border-y border-white/5 reveal">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <!-- 08, 09, 10: Technical Prowess -->
+            <div class="col-span-12 py-24 border-y border-white/5 reveal">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
                     <div>
-                        <span class="text-blue-600 font-anton text-8xl opacity-10">09</span>
-                        <h4 class="text-5xl font-anton mb-6">LKS Robotics Jabar</h4>
-                        <p class="text-gray-400 text-xl">Juara 1 Provinsi 2022. Desain robot otonom industri.</p>
+                        <span class="text-blue-600 font-anton text-4xl opacity-20">08</span>
+                        <h4 class="text-xl font-anton mt-4 mb-2">KMLI Indicator</h4>
+                        <p class="text-gray-500 text-xs">Integrasi sensor Arduino & VB.NET untuk sistem indikator mobil listrik.</p>
                     </div>
                     <div>
-                        <span class="text-blue-600 font-anton text-8xl opacity-10">10</span>
-                        <h4 class="text-5xl font-anton mb-6 text-outline" style="-webkit-text-stroke: 1px #fff;">LKS National</h4>
-                        <p class="text-gray-400 text-xl">Representasi Jawa Barat di kompetisi robotika tingkat Nasional.</p>
+                        <span class="text-blue-600 font-anton text-4xl opacity-20">09</span>
+                        <h4 class="text-xl font-anton mt-4 mb-2">LKS Robotics Jabar</h4>
+                        <p class="text-gray-500 text-xs">Juara 1 Provinsi 2022. Desain robot otonom industri tingkat tinggi.</p>
+                    </div>
+                    <div>
+                        <span class="text-blue-600 font-anton text-4xl opacity-20">10</span>
+                        <h4 class="text-xl font-anton mt-4 mb-2">LKS National</h4>
+                        <p class="text-gray-500 text-xs">Representasi Jawa Barat dalam kompetisi robotika manufaktur nasional.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 11: TRACEBLOOM -->
-            <div class="project-block block-medium mt-40 reveal">
+            <!-- 11, 12, 13: Venture & IP -->
+            <div class="project-block block-third mt-24 reveal">
                 <div class="project-num">11</div>
-                <h4 class="text-4xl font-anton mb-4">Tracebloom / TraceLab</h4>
-                <p class="text-gray-500">PMW 2025. Venture desain PCB dan solusi manufaktur elektronik.</p>
+                <h4 class="text-2xl font-anton mb-2">Tracebloom / TraceLab</h4>
+                <p class="text-gray-500 text-xs">PMW 2025. Inisiasi bisnis desain PCB dan solusi manufaktur elektronik.</p>
             </div>
-
-            <!-- 12: HAKI RIVER -->
-            <div class="project-block block-small offset-down reveal">
+            <div class="project-block block-third mt-24 reveal">
                 <div class="project-num">12</div>
-                <h4 class="text-4xl font-anton text-blue-600 mb-4">HAKI Algorithm</h4>
-                <p class="text-gray-500">Hak Kekayaan Intelektual atas algoritma monitoring kualitas air sungai.</p>
+                <h4 class="text-2xl font-anton text-blue-600 mb-2">HAKI River Algorithm</h4>
+                <p class="text-gray-500 text-xs">Hak Kekayaan Intelektual atas algoritma monitoring kualitas air sungai.</p>
             </div>
-
-            <!-- 13: SIGAP-K3 -->
-            <div class="project-block block-small reveal">
+            <div class="project-block block-third mt-24 reveal">
                 <div class="project-num">13</div>
-                <h4 class="text-4xl font-anton mb-4">SIGAP-K3</h4>
-                <p class="text-gray-500">Digitalisasi manajemen risiko K3 pada jaringan distribusi listrik.</p>
+                <h4 class="text-2xl font-anton mb-2">SIGAP-K3</h4>
+                <p class="text-gray-500 text-xs">Digitalisasi manajemen risiko K3 pada jaringan distribusi tenaga listrik.</p>
             </div>
 
         </div>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="py-60 border-t border-white/5">
+    <footer id="contact" class="py-40 border-t border-white/5">
         <div class="px-10">
-            <h2 class="text-8xl lg:text-[16rem] font-anton leading-[0.75] mb-20 reveal">
+            <h2 class="font-anton leading-[0.8] mb-20 reveal">
                 LET'S<br><span class="text-blue-600">COLLAB.</span>
             </h2>
             <div class="flex flex-col lg:flex-row gap-12 lg:items-end justify-between reveal">
@@ -396,8 +354,8 @@
                     <a href="https://linkedin.com/in/andikasatria" target="_blank" class="text-2xl lg:text-4xl font-bold block hover:text-blue-600 underline decoration-1 underline-offset-8 transition-all">LinkedIn.com/in/andikasatria</a>
                 </div>
                 <div class="text-right">
-                    <p class="text-[10px] font-bold uppercase tracking-[0.6em] text-gray-600">© 2026 ANDIKA SATRIA PANCA</p>
-                    <p class="text-[10px] font-bold uppercase tracking-[0.6em] text-gray-600 mt-2">BANDUNG, INDONESIA</p>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-600">© 2026 ANDIKA SATRIA PANCA</p>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-600 mt-2">MADE IN BANDUNG, ID</p>
                 </div>
             </div>
         </div>
@@ -407,16 +365,10 @@
         // Custom Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
+            cursor.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
         });
 
-        // Hover Effect on Links
-        document.querySelectorAll('a, #dragArea, .image-box').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(6)');
-            el.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(6)', ''));
-        });
-
-        // PHYSICS ENGINE FOR ID BADGE (Lanyard Realistis)
+        // PHYSICS ENGINE FOR ID BADGE (Improved Lanyard)
         const card = document.getElementById('interactiveCard');
         const dragArea = document.getElementById('dragArea');
         const strapPath = document.getElementById('strap-path');
@@ -431,6 +383,7 @@
             isDragging = true;
             lastMouseX = e.clientX;
             lastMouseY = e.clientY;
+            card.style.transition = 'none';
         });
 
         document.addEventListener('mousemove', (e) => {
@@ -446,30 +399,30 @@
         function animate() {
             if (!isDragging) {
                 // Spring Physics
-                vx = (vx + (-x * 0.07)) * 0.86;
-                vy = (vy + (-y * 0.07)) * 0.86;
+                vx = (vx + (-x * 0.08)) * 0.85;
+                vy = (vy + (-y * 0.08)) * 0.85;
                 x += vx;
                 y += vy;
             }
 
-            // Realistis Lanyard Logic
-            const dynamicAnchorX = 300 + (x * 0.2); // Tali leher ikut melentur 20%
-            const dynamicAnchorY = 380 + (y * 0.15);
+            // Realistis Lanyard Logic (Strap & Cord deformation)
+            const daX = 300 + (x * 0.22); // Simpul leher ikut melentur 22%
+            const daY = 380 + (y * 0.18);
 
-            strapPath.setAttribute('d', `M 200,50 C 200,10 400,10 400,50 L 400,350 L ${dynamicAnchorX},${dynamicAnchorY} L 200,350 Z`);
-            ring.setAttribute('cx', dynamicAnchorX);
-            ring.setAttribute('cy', dynamicAnchorY);
-            cordPath.setAttribute('d', `M ${dynamicAnchorX},${dynamicAnchorY} L ${300 + x},${380 + y + 40}`);
+            strapPath.setAttribute('d', `M 200,50 C 200,10 400,10 400,50 L 400,350 L ${daX},${daY} L 200,350 Z`);
+            ring.setAttribute('cx', daX);
+            ring.setAttribute('cy', daY);
+            cordPath.setAttribute('d', `M ${daX},${daY} L ${300 + x},${380 + y + 40}`);
             
-            const rotX = y / 10 + vy * 1.5;
-            const rotY = -x / 10 - vx * 1.5;
+            const rotX = y / 12 + vy * 1.5;
+            const rotY = -x / 12 - vx * 1.5;
             card.style.transform = `translate(${x}px, ${y}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
             requestAnimationFrame(animate);
         }
         animate();
 
-        // Reveal Animation on Scroll
+        // Reveal Animation
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
