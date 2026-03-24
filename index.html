@@ -43,7 +43,7 @@
             position: fixed;
             width: 70vw;
             height: 70vw;
-            background: radial-gradient(circle, rgba(0, 56, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 56, 255, 0.08) 0%, transparent 70%);
             top: -20%;
             right: -10%;
             z-index: 0;
@@ -63,14 +63,15 @@
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Arsitektur Layout Hero - Dibuat Lebih Padat */
+        /* Arsitektur Layout Hero - Dibuat Sangat Padat */
         .hero-container {
             position: relative;
             min-height: 100vh;
             display: grid;
-            grid-template-columns: 1fr 1fr 140px; 
+            /* Kolom 1: Teks Utama | Kolom 2: Area Kartu ID | Kolom 3: Teks Vertikal Raksasa */
+            grid-template-columns: 1fr 1fr 180px; 
             align-items: center;
-            padding: 0 40px;
+            padding: 0 0 0 60px;
             overflow: visible;
         }
 
@@ -78,11 +79,10 @@
             position: relative;
             z-index: 20;
             pointer-events: none;
-            padding-left: 2vw;
         }
 
         .hero-title {
-            font-size: clamp(4rem, 13vw, 14rem);
+            font-size: clamp(4.5rem, 14vw, 15rem);
             line-height: 0.78;
             letter-spacing: -0.05em;
         }
@@ -92,7 +92,7 @@
             -webkit-text-stroke: 1.5px var(--blue-brand);
         }
 
-        /* Branding Vertikal Sisi Kanan - Font Anton & Border */
+        /* Branding Vertikal Sisi Kanan - Dibuat Lebih Sangar dan Tinggi */
         .branding-sidebar {
             height: 100vh;
             display: flex;
@@ -100,24 +100,25 @@
             justify-content: center;
             position: relative;
             z-index: 20;
-            background: rgba(0,0,0,0.2);
-            border-left: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0, 56, 255, 0.02);
+            border-left: 1px solid rgba(0, 56, 255, 0.2);
         }
 
         .vertical-box {
             writing-mode: vertical-rl;
             transform: rotate(180deg);
-            padding: 60px 20px;
-            border: 3px solid var(--blue-brand);
-            font-family: 'Anton'; /* Menggunakan Anton agar sama dengan judul */
-            font-size: clamp(2rem, 4vw, 5rem);
+            padding: 80px 25px;
+            border: 4px solid var(--blue-brand); /* Border lebih tebal */
+            font-family: 'Anton';
+            font-size: clamp(2.5rem, 5vw, 6.5rem); /* Ukuran font lebih besar */
             color: var(--blue-brand);
             text-align: center;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.25em; /* Letter spacing tinggi agar tidak buntet */
             white-space: nowrap;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 56, 255, 0.1);
         }
 
         /* Badge Center System */
@@ -133,14 +134,14 @@
         }
 
         .id-card {
-            width: 320px;
-            height: 500px;
+            width: 340px; /* Sedikit lebih lebar */
+            height: 520px; /* Sedikit lebih tinggi */
             background: #fff;
             color: #000;
             border-radius: 2px;
-            padding: 24px;
+            padding: 28px;
             transform-style: preserve-3d;
-            box-shadow: 0 40px 120px -20px rgba(0,0,0,0.85);
+            box-shadow: 0 50px 150px -30px rgba(0,0,0,0.9);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -150,9 +151,9 @@
         }
 
         .card-hole {
-            width: 50px;
-            height: 12px;
-            background: #111;
+            width: 55px;
+            height: 14px;
+            background: #000;
             border-radius: 20px;
             position: absolute;
             top: 15px;
@@ -176,7 +177,7 @@
         .lanyard-strap {
             fill: none;
             stroke: var(--blue-brand);
-            stroke-width: 42;
+            stroke-width: 45;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
@@ -255,6 +256,11 @@
             transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        .project-block:hover img {
+            filter: grayscale(0) brightness(1);
+            transform: scale(1.02);
+        }
+
         .project-num {
             font-family: 'Anton';
             font-size: 10rem;
@@ -277,8 +283,8 @@
         }
 
         .bio-text {
-            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-            max-width: 520px;
+            font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+            max-width: 550px;
             line-height: 1.5;
             color: #777;
             margin-top: 4vh;
@@ -309,7 +315,7 @@
         <div class="hero-title-container">
             <div class="reveal">
                 <span class="text-[9px] font-bold tracking-[0.6em] text-blue-600 uppercase mb-8 block">Project Showcase • 2023—2026</span>
-                <h1 class="hero-title font-anton leading-[0.82]">
+                <h1 class="hero-title font-anton leading-[0.8]">
                     DESIGN<br>
                     <span class="text-outline">CASE</span><br>
                     ARCHIVE
@@ -330,9 +336,9 @@
                         <stop offset="100%" style="stop-color:#808080" />
                     </linearGradient>
                     <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="10" />
                         <feOffset dx="0" dy="8" />
-                        <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer>
+                        <feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
                         <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
                     </filter>
                 </defs>
@@ -351,7 +357,7 @@
             <div class="id-card" id="interactiveCard">
                 <div class="card-hole"></div>
                 <div class="w-full flex justify-between items-center mb-4 mt-8">
-                    <img src="OIP.webp" class="h-6 opacity-60" alt="Polban">
+                    <img src="OIP.webp" class="h-6 opacity-60" alt="Logo Polban">
                     <span class="text-[7px] font-black tracking-widest text-gray-400">ID: 2313-PB-X</span>
                 </div>
                 
@@ -369,7 +375,7 @@
             </div>
         </div>
 
-        <!-- Kolom 3: Teks Vertikal Branding -->
+        <!-- Kolom 3: Teks Vertikal Branding - Font Anton, Tinggi, dan Letter Spacing Luas -->
         <div class="branding-sidebar">
             <div class="vertical-box">ELECTRONICS<br>ENGINEERING</div>
         </div>
@@ -406,10 +412,10 @@
 
             <div class="col-span-12 py-32 border-y border-white/5 reveal">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">03</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">AgriSpectra Drone</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">04</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">CHIMOS Poultry AI</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">05</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">IoT Shrimp Farm</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">06</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">ESP32 Min-Sys</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">03</span><p class="text-sm font-bold mt-2 uppercase">AgriSpectra Drone</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">04</span><p class="text-sm font-bold mt-2 uppercase">CHIMOS Poultry AI</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">05</span><p class="text-sm font-bold mt-2 uppercase">IoT Shrimp Farm</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">06</span><p class="text-sm font-bold mt-2 uppercase">ESP32 Min-Sys</p></div>
                 </div>
             </div>
 
