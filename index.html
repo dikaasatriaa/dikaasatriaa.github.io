@@ -3,228 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andika Satria Panca | Future Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>PORTOFOLIO | Andika Satria Panca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #05070a;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.5);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
+            --blue-brand: #0038FF;
+            --dark-bg: #0A0A0A;
+            --paper-white: #EAEAEA;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Background Animation */
-        .blob {
+        .font-anton { font-family: 'Anton', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+
+        /* Background Texture Effect */
+        .bg-texture {
             position: fixed;
-            width: 500px;
-            height: 500px;
-            background: var(--accent-glow);
-            filter: blur(120px);
-            border-radius: 50%;
-            z-index: -1;
-            animation: move 20s infinite alternate;
+            inset: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 50;
         }
 
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(50%, 50%); }
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-
-        /* Hero Section */
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .badge {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border: 1px solid var(--accent);
-            margin-bottom: 1.5rem;
+        /* Hero Text with Image Mask effect */
+        .hero-title {
+            font-size: clamp(5rem, 20vw, 15rem);
+            line-height: 0.8;
+            letter-spacing: -0.05em;
             text-transform: uppercase;
-        }
-
-        h1 { font-size: 5rem; line-height: 1; margin-bottom: 1rem; font-weight: 800; }
-        .gradient-text {
-            background: linear-gradient(to right, #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc { font-size: 1.25rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2rem; }
-
-        /* Stats Bar */
-        .stats { display: flex; gap: 3rem; margin-top: 2rem; }
-        .stat-item h2 { font-size: 2rem; color: var(--accent); }
-        .stat-item p { font-size: 0.9rem; color: var(--text-dim); }
-
-        /* Project Cards */
-        section { padding: 8rem 0; }
-        h2.section-title { font-size: 2.5rem; margin-bottom: 3rem; position: relative; }
-        h2.section-title::after {
-            content: ''; position: absolute; left: 0; bottom: -10px;
-            width: 50px; height: 4px; background: var(--accent);
-        }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 2.5rem;
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
-            background: rgba(59, 130, 246, 0.05);
-        }
-
-        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .card p { color: var(--text-dim); font-size: 0.95rem; }
-
-        /* Skills Tag */
-        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-        .tag {
-            background: rgba(255,255,255,0.05);
-            padding: 0.3rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            background: var(--accent);
             color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px -10px var(--accent);
+            position: relative;
         }
 
-        .btn:hover { opacity: 0.9; transform: scale(1.05); }
+        /* Diagonal Blue Section */
+        .blue-gradient-top {
+            background: linear-gradient(180deg, var(--blue-brand) 0%, #001A72 100%);
+            height: 60vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            .stats { flex-direction: column; gap: 1.5rem; }
+        .glass-sticker {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: rotate(-5deg);
+        }
+
+        .section-tag {
+            background: white;
+            color: black;
+            padding: 4px 20px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.5rem;
+            display: inline-block;
+            box-shadow: 4px 4px 0px var(--blue-brand);
+        }
+
+        .experience-card {
+            border-left: 2px solid rgba(255,255,255,0.2);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 8px;
+            height: 8px;
+            background: white;
+        }
+
+        /* Floating elements animation */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
     </style>
 </head>
-<body>
+<body class="pb-20">
+    <div class="bg-texture"></div>
+    <div class="blue-gradient-top"></div>
 
-<div class="blob"></div>
+    <!-- Header / Branding -->
+    <nav class="p-6 flex justify-between items-center relative z-10">
+        <span class="font-bold tracking-tighter text-xl">B A P O <span class="text-blue-400">—</span> ENGINEER</span>
+        <span class="text-sm opacity-60">2023 — 2026</span>
+    </nav>
 
-<div class="container">
-    <header>
-        <div class="badge">Electronics Engineer | Mechatronics</div>
-        <h1>I'm <span class="gradient-text">Andika Satria</span>.</h1>
-        <p class="hero-desc">Mahasiswa Politeknik Negeri Bandung yang fokus pada sistem kendali otomatis, IoT, dan solusi AI untuk industri masa depan.</p>
+    <!-- HERO SECTION -->
+    <header class="relative pt-10 text-center px-4 overflow-hidden">
+        <div class="hero-title font-anton select-none opacity-90">
+            PORT<br>FOLIO
+        </div>
         
-        <div class="stats">
-            <div class="stat-item"><h2>10+</h2><p>Awards & Achievements</p></div>
-            <div class="stat-item"><h2>15+</h2><p>Technical Skills</p></div>
-            <div class="stat-item"><h2>3.56</h2><p>Current GPA</p></div>
+        <!-- Floating Element: Microchip (Replacement for floppy disk) -->
+        <div class="absolute top-1/4 left-10 md:left-40 floating hidden md:block z-20">
+            <div class="glass-sticker p-4 rounded-lg w-32 shadow-2xl">
+                <div class="bg-blue-600 w-full h-20 rounded mb-2 flex items-center justify-center text-xs font-bold text-center leading-tight">
+                    CV<br>ANDIKA S.
+                </div>
+                <div class="text-[10px] font-bold opacity-70">RESUME 2026</div>
+            </div>
         </div>
 
-        <div style="margin-top: 3rem;">
-            <a href="mailto:andika.satria.tele423@polban.ac.id" class="btn">Let's Collaborate</a>
+        <!-- Hero Image Mockup (Robot/Human Pose like reference) -->
+        <div class="mt-[-80px] md:mt-[-150px] relative z-10 flex justify-center">
+            <div class="w-[300px] md:w-[500px] grayscale contrast-125 hover:grayscale-0 transition-all duration-700">
+                <!-- Using SVG to represent a technical engineering pose if no image -->
+                <svg viewBox="0 0 200 200" class="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#grad)" d="M44.7,-76.4C58.1,-69.2,69.2,-56.9,76.4,-42.8C83.5,-28.7,86.7,-12.8,84.6,2.5C82.5,17.8,75.1,32.5,65.3,45.5C55.5,58.5,43.3,69.8,29.1,75.7C14.9,81.6,-1.3,82.1,-17.1,78.7C-32.9,75.3,-48.3,68,-60.7,56.7C-73.1,45.4,-82.5,30.1,-85.4,14.2C-88.3,-1.7,-84.7,-18.2,-76.9,-33.1C-69.1,-48,-57.1,-61.3,-43.3,-68.1C-29.5,-74.9,-14.8,-75.2,0.5,-76.1C15.8,-77,31.3,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Anton" font-size="20" fill="white">ELECTRONICS</text>
+                </svg>
+            </div>
         </div>
     </header>
 
-    <section id="work">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>MEDZAI</h3>
-                <p>Wearable device IoT untuk monitoring pasien DBD dengan integrasi sensor real-time. Pemenang Juara 1 FUSE 2025.</p>
-                <div class="tags">
-                    <span class="tag">Internet of Things</span>
-                    <span class="tag">Healthcare</span>
-                    <span class="tag">Embedded Systems</span>
+    <!-- ABOUT SECTION -->
+    <main class="max-w-6xl mx-auto px-6 mt-20 grid grid-cols-1 md:grid-cols-12 gap-12 relative z-20">
+        
+        <!-- Left Side: Intro -->
+        <div class="md:col-span-8">
+            <div class="mb-10">
+                <span class="section-tag font-inter uppercase">about me</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+                <div class="w-full md:w-1/3">
+                    <div class="border-4 border-white p-2">
+                        <!-- Use the user's name as visual element -->
+                        <div class="bg-neutral-800 aspect-[3/4] flex items-end p-4">
+                            <h2 class="text-4xl font-anton leading-none">ANDIKA<br>SATRIA</h2>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex gap-2 overflow-x-auto text-[10px] font-bold">
+                        <span class="bg-blue-600 px-2 py-1">POLBAN</span>
+                        <span class="bg-white text-black px-2 py-1 uppercase leading-none flex items-center">IPK 3.56</span>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-2/3">
+                    <div class="flex flex-wrap gap-4 mb-6 text-sm font-bold opacity-80 uppercase tracking-widest">
+                        <span>Live in Bandung</span>
+                        <span>|</span>
+                        <span>Electronics Engineer</span>
+                        <span>|</span>
+                        <span>@dikaasatriaa</span>
+                    </div>
+                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-8">
+                        Mahasiswa <span class="font-bold border-b-2 border-blue-500">Teknik Elektronika</span> yang fokus pada riset sistem cerdas, otomasi industri, dan <span class="italic">embedded systems</span>. Terampil dalam integrasi sensor dan perancangan sistem kontrol presisi.
+                    </p>
                 </div>
             </div>
-            <div class="card">
-                <h3>V-PALM DRONE</h3>
-                <p>Sistem AI & Drone untuk verifikasi cadangan karbon kelapa sawit secara otomatis dan akurat.</p>
-                <div class="tags">
-                    <span class="tag">Artificial Intelligence</span>
-                    <span class="tag">Drone Tech</span>
-                    <span class="tag">Python</span>
+        </div>
+
+        <!-- Right Side: Contact / Skills (Following the reference layout) -->
+        <div class="md:col-span-4 space-y-12">
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-50">Contract / Socials</h4>
+                <ul class="space-y-2 font-bold text-lg">
+                    <li><a href="#" class="hover:text-blue-500">andika.satria.tele423@polban.ac.id</a></li>
+                    <li><a href="https://linkedin.com/in/andikasatria" class="hover:text-blue-500">LinkedIn. /andikasatria</a></li>
+                    <li><a href="https://instagram.com/dikaasatriaa" class="hover:text-blue-500">Instagram. @dikaasatriaa</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-50">Core Skills</h4>
+                <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                    <div class="bg-white text-black p-3 rounded">INTOUCH HMI/SCADA</div>
+                    <div class="bg-blue-600 p-3 rounded">LABVIEW</div>
+                    <div class="border border-white/20 p-3 rounded">PLC PROGRAMMING</div>
+                    <div class="border border-white/20 p-3 rounded">ARDUINO / C++</div>
+                    <div class="border border-white/20 p-3 rounded">FLUTTER / FIREBASE</div>
+                    <div class="border border-white/20 p-3 rounded">PROTEUS / MATLAB</div>
                 </div>
             </div>
-            <div class="card">
-                <h3>SIGAP-K3DISTRIK</h3>
-                <p>Inovasi manajemen keselamatan kerja pada jaringan distribusi listrik berbasis digital.</p>
-                <div class="tags">
-                    <span class="tag">Risk Management</span>
-                    <span class="tag">Industry 4.0</span>
-                    <span class="tag">Safety</span>
+        </div>
+
+        <!-- EXPERIENCES SECTION (3 Columns like reference) -->
+        <div class="md:col-span-12 mt-10">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-8 opacity-50">Work Experiences</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold">2024 — 2025</span>
+                    <h3 class="text-xl font-bold mt-2">PT Forsta Kalmedic Global</h3>
+                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Engineer Team - Intern</p>
+                    <p class="text-sm opacity-70">Optimalisasi sistem SCADA dan pemeliharaan mesin HVAC di industri farmasi.</p>
+                </div>
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold">2024 — SEKARANG</span>
+                    <h3 class="text-xl font-bold mt-2">CITA ITB</h3>
+                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Assistant Researcher</p>
+                    <p class="text-sm opacity-70">Riset teknologi instrumentasi dan pengembangan prototipe sistem kendali cerdas.</p>
+                </div>
+                <div class="experience-card">
+                    <span class="text-xs opacity-50 font-bold">2024 — 2025</span>
+                    <h3 class="text-xl font-bold mt-2">ELTRAS Radio</h3>
+                    <p class="text-xs text-blue-400 font-bold mb-4 uppercase">Personalia Manager</p>
+                    <p class="text-sm opacity-70">Manajemen strategi organisasi dan kepemimpinan tim lintas divisi.</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="skills">
-        <h2 class="section-title">Core Expertise</h2>
-        <div class="grid">
-            <div class="card">
-                <h3 style="color: #60a5fa;">Automation</h3>
-                <p>InTouch HMI/SCADA, LabVIEW, PLC Programming, Industrial Network Design (OSPF).</p>
+        <!-- PROJECTS / ACHIEVEMENTS (Big Section) -->
+        <div class="md:col-span-12 mt-20">
+            <div class="mb-10 flex justify-between items-end">
+                <span class="section-tag font-inter uppercase">awards & projects</span>
+                <span class="text-6xl font-anton opacity-10">PROJECTS</span>
             </div>
-            <div class="card">
-                <h3 style="color: #fbbf24;">Electronics</h3>
-                <p>Circuit Design, Proteus, MATLAB/Simulink, Sensor Integration, Microcontrollers (C++).</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Achievement 1 -->
+                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
+                    <span class="text-4xl font-anton mb-2">01</span>
+                    <h3 class="text-xl font-bold">MEDZAI</h3>
+                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Juara 1 FUSE 2025 - IoT monitoring pasien DBD.</p>
+                </div>
+                <!-- Achievement 2 -->
+                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
+                    <span class="text-4xl font-anton mb-2">02</span>
+                    <h3 class="text-xl font-bold">GOLD MEDAL</h3>
+                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Indonesia Inventors Day 2025 - Special Award.</p>
+                </div>
+                <!-- Achievement 3 -->
+                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
+                    <span class="text-4xl font-anton mb-2">03</span>
+                    <h3 class="text-xl font-bold">V-PALM DRONE</h3>
+                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Verifikasi karbon kelapa sawit berbasis AI & Drone.</p>
+                </div>
+                <!-- Achievement 4 -->
+                <div class="group relative overflow-hidden aspect-square border border-white/10 bg-neutral-900 p-8 flex flex-col justify-end hover:bg-blue-600 transition-all duration-500">
+                    <span class="text-4xl font-anton mb-2">04</span>
+                    <h3 class="text-xl font-bold">HAKI</h3>
+                    <p class="text-xs opacity-0 group-hover:opacity-100 transition-opacity mt-2">Algoritma Monitoring Kualitas Air Sungai.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section id="career">
-        <h2 class="section-title">Experiences</h2>
-        <div class="card" style="margin-bottom: 1.5rem;">
-            <span style="color: var(--accent); font-weight: 600;">2024 - 2025</span>
-            <h3>PT Forsta Kalmedic Global</h3>
-            <p>Internship: SCADA & HVAC Systems specialist for pharmaceutical industry standards.</p>
-        </div>
-        <div class="card">
-            <span style="color: var(--accent); font-weight: 600;">Current</span>
-            <h3>CITA ITB</h3>
-            <p>Assistant Researcher: Instrumentation & Automation research and development.</p>
-        </div>
-    </section>
-
-    <footer style="padding-bottom: 5rem; text-align: center;">
-        <p style="color: var(--text-dim);">Built with Engineering Excellence</p>
-        <div style="margin-top: 1rem;">
-            <a href="https://linkedin.com/in/andikasatria" style="color: white; margin: 0 10px;">LinkedIn</a>
-            <a href="https://instagram.com/dikaasatriaa" style="color: white; margin: 0 10px;">Instagram</a>
-        </div>
+    <footer class="mt-40 border-t border-white/10 p-10 text-center">
+        <div class="text-[10rem] font-anton opacity-5 leading-none select-none">ANDIKA SATRIA</div>
+        <p class="text-xs font-bold tracking-widest opacity-50 mt-10 uppercase">Crafted for the Future of Automation</p>
     </footer>
-</div>
 
 </body>
 </html>
