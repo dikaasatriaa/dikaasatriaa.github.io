@@ -3,282 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTOFOLIO | Andika Satria Panca</title>
+    <title>ANDIKA SATRIA | PORTFOLIO INDEX</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --blue-brand: #0038FF;
-            --dark-bg: #050505;
+            --dark-bg: #060606;
         }
 
-        * { scroll-behavior: smooth; }
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box;
+            scroll-behavior: smooth;
+            cursor: none; 
+        }
 
         body {
             background-color: var(--dark-bg);
             color: white;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .font-anton { font-family: 'Anton', sans-serif; }
-        
-        /* Grainy Overlay */
+        .font-anton { font-family: 'Anton', sans-serif; text-transform: uppercase; }
+        .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Estetika Desain Grafis: Grain & Glow */
         .bg-grain {
             position: fixed;
             inset: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.03;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.12;
             pointer-events: none;
             z-index: 100;
         }
 
+        .gradient-glow {
+            position: fixed;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(0, 56, 255, 0.06) 0%, transparent 70%);
+            top: -30vw;
+            right: -20vw;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Custom Cursor Minimalis */
+        #cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            mix-blend-mode: difference;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Hero Layout */
         .hero-title {
-            font-size: clamp(4rem, 12vw, 10rem);
-            line-height: 0.85;
-            letter-spacing: -0.05em;
-            text-transform: uppercase;
+            font-size: clamp(4rem, 14vw, 14rem);
+            line-height: 0.8;
+            letter-spacing: -0.04em;
         }
 
-        .section-tag {
-            background: var(--blue-brand);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 4px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
         }
 
-        /* Dynamic Grid Layout */
-        .grid-custom {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-        }
-
-        .porto-item {
-            grid-column: span 12;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        @media (min-width: 768px) {
-            .porto-item.small { grid-column: span 4; }
-            .porto-item.medium { grid-column: span 6; }
-            .porto-item.large { grid-column: span 8; }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            height: 100%;
-        }
-
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--blue-brand);
-            transform: translateY(-10px);
-        }
-
-        .img-placeholder {
-            width: 100%;
-            aspect-ratio: 16/10;
-            background: linear-gradient(45deg, #111, #1a1a1a);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .img-placeholder::after {
-            content: 'LIHAT PROYEK';
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 0.8rem;
-            opacity: 0;
-            background: rgba(0, 56, 255, 0.8);
-            transition: 0.3s;
-        }
-
-        .glass-card:hover .img-placeholder::after { opacity: 1; }
-
-        /* 3D ID BADGE HERO */
+        /* Lanyard System */
         .badge-wrapper {
-            perspective: 2000px;
-            z-index: 50;
-            user-select: none;
             position: relative;
-            width: 300px;
-            height: 450px;
+            width: 100%;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2000px;
         }
 
         .id-card {
-            width: 280px;
-            height: 420px;
+            width: 290px;
+            height: 450px;
             background: #fff;
             color: #000;
-            border-radius: 20px;
-            padding: 20px;
+            border-radius: 4px;
+            padding: 24px;
             transform-style: preserve-3d;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8);
+            box-shadow: 0 40px 90px -20px rgba(0,0,0,0.8);
             position: relative;
-            border: 1px solid #ddd;
-            cursor: grab;
             z-index: 10;
-            will-change: transform;
         }
 
-        .id-card:active {
-            cursor: grabbing;
-        }
-
-        /* SVG Lanyard / Cord Container */
         #lanyard-svg {
             position: absolute;
-            top: -350px;
+            top: -250px;
             left: 50%;
             transform: translateX(-50%);
             width: 600px;
-            height: 800px;
+            height: 850px;
             pointer-events: none;
             z-index: 5;
         }
 
-        .lanyard-strap {
-            fill: none;
-            stroke: #1a1a1a;
-            stroke-width: 14;
-            stroke-linecap: round;
+        .strap { fill: none; stroke: #121212; stroke-width: 18; stroke-linecap: round; }
+        .cord { fill: none; stroke: #444; stroke-width: 2.5; }
+
+        /* Dynamic Editorial Grid */
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            padding: 0 6vw;
         }
 
-        .retractable-cord {
-            fill: none;
-            stroke: #333;
-            stroke-width: 3;
+        .project-block {
+            grid-column: span 12;
+            position: relative;
+            margin-bottom: 15vh;
         }
 
-        /* Retractable Reel */
-        .reel {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 44px;
-            height: 44px;
+        @media (min-width: 1024px) {
+            .block-large { grid-column: span 8; }
+            .block-medium { grid-column: span 6; }
+            .block-small { grid-column: span 4; }
+            .offset-up { margin-top: -10vh; }
+            .offset-down { margin-top: 10vh; }
+        }
+
+        .image-box {
+            width: 100%;
+            aspect-ratio: 16/9;
             background: #111;
-            border-radius: 50%;
-            border: 2px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 15;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
         }
 
-        .reel::after {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: #222;
-            border-radius: 50%;
-            border: 1px solid #444;
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) brightness(0.7);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-block:hover img {
+            filter: grayscale(0) brightness(1);
+            transform: scale(1.04);
+        }
+
+        .project-num {
+            font-family: 'Anton';
+            font-size: 8rem;
+            position: absolute;
+            top: -3rem;
+            left: -1rem;
+            opacity: 0.03;
+            z-index: -1;
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: 1s all ease;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .id-card-gloss {
+        .marquee-bg {
+            font-family: 'Anton';
+            font-size: 15vw;
+            color: rgba(255,255,255,0.02);
+            white-space: nowrap;
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+            z-index: -1;
             pointer-events: none;
-            border-radius: 20px;
-            opacity: 0.5;
-            z-index: 20;
         }
     </style>
 </head>
 <body class="antialiased">
+    <div id="cursor"></div>
     <div class="bg-grain"></div>
+    <div class="gradient-glow"></div>
 
-    <!-- Navigasi -->
-    <nav class="fixed top-0 w-full z-[100] px-6 py-8 flex justify-between items-center mix-blend-difference">
-        <span class="font-black text-2xl tracking-tighter text-white">ASP <span class="text-blue-600">/</span> 26</span>
-        <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-widest text-white">
-            <a href="#about" class="hover:text-blue-600 transition-colors">Intro</a>
-            <a href="#showcase" class="hover:text-blue-600 transition-colors">Portofolio</a>
-            <a href="#contact" class="hover:text-blue-600 transition-colors">Kontak</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[200] px-10 py-10 flex justify-between items-center mix-blend-difference text-white">
+        <span class="font-bold text-xl tracking-tighter uppercase">Andika Satria <span class="text-blue-600">/</span> 2026</span>
+        <div class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em]">
+            <a href="#showcase" class="hover:text-blue-600 transition-all">Archive</a>
+            <a href="#contact" class="hover:text-blue-600 transition-all">Contact</a>
         </div>
     </nav>
 
-    <!-- Bagian Hero -->
-    <section class="min-h-screen relative flex items-center justify-center pt-32 px-6 overflow-visible">
-        <div class="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            
-            <!-- Sisi Kiri: Judul & Intro -->
-            <div class="z-10 order-2 md:order-1 text-center md:text-left">
-                <h1 class="font-anton hero-title mb-8 reveal">
-                    SHOW<br><span class="text-blue-600">CASE</span>
-                </h1>
-                <p id="about" class="text-lg md:text-2xl font-light text-gray-400 leading-relaxed reveal max-w-xl mx-auto md:mx-0">
-                    Mahasiswa Teknik Elektronika Polban dengan spesialisasi <span class="text-white font-bold">Otomasi Industri & IoT</span>. 
-                    Telah menyelesaikan <span class="text-blue-500 font-bold underline decoration-2 underline-offset-4">13 Proyek Strategis</span> di bidang robotika dan sistem cerdas.
-                </p>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center pt-40 px-10 relative overflow-hidden">
+        <div class="marquee-bg" style="top: 10%;">ENGINEERING MAESTRO • PRECISION</div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+            <div class="lg:col-span-8">
+                <div class="reveal">
+                    <span class="text-[10px] font-bold tracking-[0.5em] text-blue-600 uppercase mb-10 block">Engineering Showcase v2.0</span>
+                    <h1 class="hero-title font-anton leading-none">
+                        DESIGN<br>
+                        <span class="text-outline">DRIVEN</span><br>
+                        <span class="text-white">WORKS.</span>
+                    </h1>
+                </div>
+                <div class="reveal mt-16 max-w-2xl">
+                    <p class="text-xl lg:text-4xl font-light text-gray-500 leading-tight">
+                        Mahasiswa Elektronika yang menggabungkan <span class="text-white">estetika visual</span> dengan <span class="text-white italic">logika mesin</span> yang kompleks.
+                    </p>
+                </div>
             </div>
-
-            <!-- Sisi Kanan: Kartu ID 3D Interaktif (Bisa ditarik dengan Tali Realistis) -->
-            <div class="flex justify-center md:justify-end order-1 md:order-2">
+            
+            <!-- Realistic Lanyard Section -->
+            <div class="lg:col-span-4 flex justify-center items-center">
                 <div class="badge-wrapper" id="dragArea">
-                    <!-- SVG for Dynamic Cord and Lanyard -->
-                    <svg id="lanyard-svg" viewBox="0 0 600 800">
-                        <!-- Neck Strap (Fixed part) -->
-                        <path class="lanyard-strap" d="M 220,50 C 220,20 380,20 380,50 L 380,350 L 300,380 L 220,350 Z" />
-                        <!-- Connection Ring -->
-                        <circle cx="300" cy="380" r="8" fill="#444" />
-                        <!-- Retractable Cord (Dynamic) -->
-                        <path id="cord-path" class="retractable-cord" d="M 300,380 L 300,450" />
+                    <svg id="lanyard-svg" viewBox="0 0 600 850">
+                        <path id="strap-path" class="strap" d="M 200,50 C 200,10 400,10 400,50 L 400,350 L 300,380 L 200,350 Z" />
+                        <circle id="ring" cx="300" cy="380" r="10" fill="#1a1a1a" stroke="#333" />
+                        <path id="cord-path" class="cord" d="M 300,380 L 300,450" />
                     </svg>
 
-                    <div class="id-card flex flex-col items-center" id="interactiveCard">
-                        <div class="id-card-gloss"></div>
-                        <div class="reel" id="card-reel"></div>
-                        
-                        <div class="w-full flex justify-between items-center mb-6">
-                            <img src="OIP.webp" class="h-6" alt="Logo Polban">
-                            <span class="text-[8px] font-black tracking-widest bg-black text-white px-2 py-1 rounded">2023-2027</span>
+                    <div class="id-card" id="interactiveCard">
+                        <div class="w-full flex justify-between items-center mb-8">
+                            <img src="OIP.webp" class="h-6 opacity-70" alt="Polban">
+                            <span class="text-[7px] font-black tracking-widest text-gray-400">ARCHIVE_2313</span>
                         </div>
                         
-                        <div class="w-40 h-48 bg-gray-100 rounded-lg mb-6 border-2 border-gray-200 overflow-hidden flex items-center justify-center relative group">
+                        <div class="w-full aspect-[4/5] bg-gray-100 mb-6 overflow-hidden grayscale contrast-125 border border-gray-100">
                             <img src="dikas.jpg" alt="Andika Satria" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         </div>
 
-                        <div class="text-center w-full">
-                            <h2 class="text-2xl font-anton uppercase tracking-tight leading-none mb-1">Andika Satria P.</h2>
-                            <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-6">Electronics & Automation Engineer</p>
-                            
-                            <div class="flex justify-between items-end border-t border-gray-100 pt-4">
-                                <div class="text-left">
-                                    <p class="text-[7px] text-gray-400 uppercase font-bold">Student ID</p>
-                                    <p class="text-[10px] font-mono font-bold">2313440XX-POLBAN</p>
-                                </div>
-                                <div class="h-8 w-24 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)]"></div>
-                            </div>
+                        <div class="text-left">
+                            <h2 class="text-3xl font-anton leading-none mb-1">A. Satria</h2>
+                            <p class="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-6">Electronics & Mechatronics</p>
+                            <div class="w-full h-8 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)] opacity-40"></div>
                         </div>
                     </div>
                 </div>
@@ -286,185 +253,229 @@
         </div>
     </section>
 
-    <!-- Showcase Proyek -->
-    <main id="showcase" class="max-w-[1400px] mx-auto px-6 py-40">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6 reveal">
-            <div>
-                <span class="section-tag mb-6">Karya Terpilih</span>
-                <h2 class="text-5xl md:text-7xl font-anton uppercase leading-none text-white">Arsip Proyek</h2>
-            </div>
-            <p class="text-gray-500 max-w-sm text-sm uppercase font-bold tracking-widest">
-                Kumpulan karya terbaik dari kompetisi nasional, riset, dan pengembangan sistem.
-            </p>
+    <!-- THE 13 PROJECTS INDEX -->
+    <main id="showcase" class="py-60">
+        <div class="px-10 mb-40 reveal">
+            <h3 class="text-6xl lg:text-9xl font-anton leading-none">ARCHIVE<br><span class="text-blue-600">INDEX (13)</span></h3>
+            <p class="text-gray-500 mt-10 max-w-md uppercase text-[10px] font-bold tracking-[0.3em]">Membagi 13 solusi teknis ke dalam hirarki desain industri.</p>
         </div>
 
-        <div class="grid-custom">
+        <div class="editorial-grid">
             
-            <!-- Proyek items (tetap sama) -->
-            <div class="porto-item large reveal">
-                <div class="glass-card flex flex-col md:flex-row">
-                    <div class="md:w-3/5 img-placeholder">
-                        <span class="absolute top-4 left-4 z-10 bg-blue-600 text-[10px] font-black px-3 py-1 text-white">PEMENANG PENGHARGAAN</span>
+            <!-- 01: MEDZAI (Large Highlight) -->
+            <div class="project-block block-large reveal">
+                <div class="project-num">01</div>
+                <div class="image-box">
+                    <div class="absolute inset-0 flex items-center justify-center text-white/5 font-anton text-[15rem]">DBD</div>
+                </div>
+                <div class="mt-10 flex justify-between items-start">
+                    <div class="max-w-xl">
+                        <h4 class="text-5xl font-anton mb-4">MEDZAI Health Monitor</h4>
+                        <p class="text-gray-400 text-lg leading-relaxed">Juara 1 FUSE 2025. Implementasi AI untuk monitoring pasien DBD secara real-time dengan integrasi hardware biomedis.</p>
                     </div>
-                    <div class="md:w-2/5 p-10 flex flex-col justify-center">
-                        <div class="text-blue-600 font-anton text-4xl mb-4">01</div>
-                        <h3 class="text-2xl font-anton uppercase mb-4 text-white">MEDZAI - IoT Health</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Juara 1 FUSE 2025. Sistem monitoring pasien DBD dengan integrasi AI untuk deteksi dini kondisi kritis.</p>
-                        <div class="flex gap-2">
-                            <span class="text-[8px] font-bold border border-white/20 px-2 py-1 uppercase text-white">IoT</span>
-                            <span class="text-[8px] font-bold border border-white/20 px-2 py-1 uppercase text-white">Healthcare</span>
-                        </div>
+                    <span class="text-[10px] font-bold bg-blue-600 px-3 py-1 uppercase tracking-widest">Champion</span>
+                </div>
+            </div>
+
+            <!-- 02: V-COMS (Medium) -->
+            <div class="project-block block-medium offset-down reveal">
+                <div class="project-num">02</div>
+                <div class="image-box aspect-square">
+                    <div class="absolute inset-0 flex items-center justify-center text-white/5 font-anton text-9xl">VISION</div>
+                </div>
+                <div class="mt-10">
+                    <h4 class="text-4xl font-anton mb-4">V-COMS AI Vision</h4>
+                    <p class="text-gray-400">Medali Emas IID 2025. Klasifikasi kendaraan dan estimasi emisi karbon menggunakan Computer Vision.</p>
+                    <span class="inline-block mt-6 text-[10px] font-bold text-yellow-500 border border-yellow-500/30 px-3 py-1 uppercase">Gold Medal</span>
+                </div>
+            </div>
+
+            <!-- 03: AGRISPECTRA -->
+            <div class="project-block block-medium reveal">
+                <div class="project-num">03</div>
+                <div class="image-box"></div>
+                <div class="mt-10">
+                    <h4 class="text-4xl font-anton mb-4">AgriSpectra Drone</h4>
+                    <p class="text-gray-400">Juara 2 AITEC 2025. Integrasi Drone Multispektoral untuk optimasi pertanian presisi.</p>
+                </div>
+            </div>
+
+            <!-- 04: CHIMOS -->
+            <div class="project-block block-small reveal">
+                <div class="project-num">04</div>
+                <div class="image-box"></div>
+                <div class="mt-10">
+                    <h4 class="text-3xl font-anton mb-2 text-blue-600">CHIMOS Poultry</h4>
+                    <p class="text-gray-500 text-sm">Juara 3 ERIC 2025. Smart monitoring kandang ayam berbasis jaringan LoRa.</p>
+                </div>
+            </div>
+
+            <!-- 05: SHRIMP FARM -->
+            <div class="project-block block-small offset-up reveal">
+                <div class="project-num">05</div>
+                <div class="image-box aspect-[3/4]"></div>
+                <div class="mt-10">
+                    <h4 class="text-3xl font-anton mb-2">IoT Shrimp Farm</h4>
+                    <p class="text-gray-500 text-sm">PKM-KC 2024. Automasi ekosistem tambak udang cerdas.</p>
+                </div>
+            </div>
+
+            <!-- 06: ESP32 MIN SYSTEM -->
+            <div class="project-block block-small reveal">
+                <div class="project-num">06</div>
+                <div class="image-box aspect-square"></div>
+                <div class="mt-10">
+                    <h4 class="text-3xl font-anton mb-2">ESP32 Min-System</h4>
+                    <p class="text-gray-500 text-sm">Custom PCB Design untuk kontrol suhu sistem closed-loop.</p>
+                </div>
+            </div>
+
+            <!-- 07: LORA FLOOD -->
+            <div class="project-block block-medium reveal">
+                <div class="project-num">07</div>
+                <h4 class="text-5xl font-anton mb-4">LoRa Flood EWS</h4>
+                <p class="text-gray-400 text-lg">Peringatan dini banjir jarak jauh dengan integrasi bot Telegram.</p>
+            </div>
+
+            <!-- 08: KMLI INDICATOR -->
+            <div class="project-block block-medium reveal text-right">
+                <div class="project-num">08</div>
+                <h4 class="text-5xl font-anton mb-4">KMLI Indicator</h4>
+                <p class="text-gray-400 text-lg">Sistem indikator Kontes Mobil Listrik berbasis VB.NET & Arduino.</p>
+            </div>
+
+            <!-- 09 & 10: LKS ROBOTICS (Grouped Design) -->
+            <div class="col-span-12 py-40 border-y border-white/5 reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <div>
+                        <span class="text-blue-600 font-anton text-8xl opacity-10">09</span>
+                        <h4 class="text-5xl font-anton mb-6">LKS Robotics Jabar</h4>
+                        <p class="text-gray-400 text-xl">Juara 1 Provinsi 2022. Desain robot otonom industri.</p>
+                    </div>
+                    <div>
+                        <span class="text-blue-600 font-anton text-8xl opacity-10">10</span>
+                        <h4 class="text-5xl font-anton mb-6 text-outline" style="-webkit-text-stroke: 1px #fff;">LKS National</h4>
+                        <p class="text-gray-400 text-xl">Representasi Jawa Barat di kompetisi robotika tingkat Nasional.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Tambahkan item proyek lainnya sesuai versi sebelumnya... -->
-            <div class="porto-item small reveal">
-                <div class="glass-card p-10 flex flex-col h-full">
-                    <div class="text-blue-600 font-anton text-4xl mb-6">02</div>
-                    <h3 class="text-2xl font-anton uppercase mb-4 text-white">V-COMS - Carbon AI</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed flex-grow">Medali Emas IID 2025. Monitoring emisi karbon kendaraan menggunakan Computer Vision.</p>
-                    <div class="img-placeholder mt-8 rounded-lg opacity-50"></div>
-                </div>
+            <!-- 11: TRACEBLOOM -->
+            <div class="project-block block-medium mt-40 reveal">
+                <div class="project-num">11</div>
+                <h4 class="text-4xl font-anton mb-4">Tracebloom / TraceLab</h4>
+                <p class="text-gray-500">PMW 2025. Venture desain PCB dan solusi manufaktur elektronik.</p>
             </div>
 
-            <div class="porto-item medium reveal">
-                <div class="glass-card p-10">
-                    <div class="text-blue-600 font-anton text-4xl mb-6">03</div>
-                    <h3 class="text-2xl font-anton uppercase mb-4 text-white">AgriSpectra Drone</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Juara 2 AITEC 2025. Optimalisasi pertanian menggunakan drone multispektoral.</p>
-                    <div class="img-placeholder rounded-lg"></div>
-                </div>
+            <!-- 12: HAKI RIVER -->
+            <div class="project-block block-small offset-down reveal">
+                <div class="project-num">12</div>
+                <h4 class="text-4xl font-anton text-blue-600 mb-4">HAKI Algorithm</h4>
+                <p class="text-gray-500">Hak Kekayaan Intelektual atas algoritma monitoring kualitas air sungai.</p>
             </div>
 
-            <div class="porto-item medium reveal">
-                <div class="glass-card p-10">
-                    <div class="text-blue-600 font-anton text-4xl mb-6">04</div>
-                    <h3 class="text-2xl font-anton uppercase mb-4 text-white">CHIMOS Poultry</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Juara 3 ERIC 2025. Sistem kendali kandang ayam cerdas berbasis jaringan LoRa.</p>
-                    <div class="img-placeholder rounded-lg"></div>
-                </div>
+            <!-- 13: SIGAP-K3 -->
+            <div class="project-block block-small reveal">
+                <div class="project-num">13</div>
+                <h4 class="text-4xl font-anton mb-4">SIGAP-K3</h4>
+                <p class="text-gray-500">Digitalisasi manajemen risiko K3 pada jaringan distribusi listrik.</p>
             </div>
-            
-            <!-- Proyek-proyek lainnya diringkas agar tetap efisien -->
-            <div class="porto-item small reveal"><div class="glass-card p-10"><h3 class="text-xl font-anton text-white">05 - IoT Shrimp Farm</h3></div></div>
-            <div class="porto-item small reveal"><div class="glass-card p-10"><h3 class="text-xl font-anton text-white">06 - ESP32 Hardware</h3></div></div>
-            <div class="porto-item small reveal"><div class="glass-card p-10"><h3 class="text-xl font-anton text-white text-blue-500">07 - LoRa Flood EWS</h3></div></div>
-            <div class="porto-item small reveal"><div class="glass-card p-8 text-center"><h4 class="font-anton text-xl uppercase text-blue-600">12 - HAKI Algorithm</h4></div></div>
-            <div class="porto-item small reveal"><div class="glass-card p-8 text-center"><h4 class="font-anton text-xl uppercase text-white">13 - SIGAP-K3</h4></div></div>
 
         </div>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="max-w-[1400px] mx-auto px-6 py-40 border-t border-white/5 reveal">
-        <div class="grid md:grid-cols-2 gap-20 items-center">
-            <div>
-                <h2 class="text-6xl md:text-8xl font-anton uppercase leading-none mb-10 text-white">Ayo Membangun <br><span class="text-blue-600">Bersama.</span></h2>
-                <div class="flex gap-4">
-                    <a href="mailto:andika.satria.tele423@polban.ac.id" class="bg-white text-black font-black px-8 py-4 uppercase text-xs hover:bg-blue-600 hover:text-white transition-all">Mulai Proyek</a>
-                    <a href="https://linkedin.com/in/andikasatria" target="_blank" class="border border-white/20 font-black px-8 py-4 uppercase text-xs hover:bg-white hover:text-black transition-all text-white">LinkedIn</a>
+    <footer id="contact" class="py-60 border-t border-white/5">
+        <div class="px-10">
+            <h2 class="text-8xl lg:text-[16rem] font-anton leading-[0.75] mb-20 reveal">
+                LET'S<br><span class="text-blue-600">COLLAB.</span>
+            </h2>
+            <div class="flex flex-col lg:flex-row gap-12 lg:items-end justify-between reveal">
+                <div class="space-y-6">
+                    <a href="mailto:andika.satria.tele423@polban.ac.id" class="text-2xl lg:text-4xl font-bold block hover:text-blue-600 underline decoration-1 underline-offset-8 transition-all">andika.satria.tele423@polban.ac.id</a>
+                    <a href="https://linkedin.com/in/andikasatria" target="_blank" class="text-2xl lg:text-4xl font-bold block hover:text-blue-600 underline decoration-1 underline-offset-8 transition-all">LinkedIn.com/in/andikasatria</a>
                 </div>
-            </div>
-            <div class="space-y-6 text-white">
-                <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Based in Bandung, Indonesia</p>
-                <div class="text-3xl md:text-5xl font-light">
-                    Menghubungkan <span class="italic font-bold text-white">Ide Elektronika</span> dengan <span class="italic font-bold text-white">Eksekusi Nyata</span>.
+                <div class="text-right">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.6em] text-gray-600">© 2026 ANDIKA SATRIA PANCA</p>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.6em] text-gray-600 mt-2">BANDUNG, INDONESIA</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
+        });
+
+        // Hover Effect on Links
+        document.querySelectorAll('a, #dragArea, .image-box').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(6)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(6)', ''));
+        });
+
+        // PHYSICS ENGINE FOR ID BADGE (Lanyard Realistis)
         const card = document.getElementById('interactiveCard');
         const dragArea = document.getElementById('dragArea');
+        const strapPath = document.getElementById('strap-path');
         const cordPath = document.getElementById('cord-path');
-        const reel = document.getElementById('card-reel');
+        const ring = document.getElementById('ring');
 
         let isDragging = false;
-        let currentX = 0, currentY = 0;
-        let targetX = 0, targetY = 0;
-        let startMouseX, startMouseY;
-
-        // Fixed anchor point for the lanyard (middle of the neck strap)
-        const anchorX = 300; 
-        const anchorY = 380; 
-
-        function updateCord() {
-            // Calculate current reel position relative to SVG coordinates
-            // Card starts centered at dragArea. Reel is at top center of card.
-            const cardRect = card.getBoundingClientRect();
-            const areaRect = dragArea.getBoundingClientRect();
-            
-            // Reel position in "local" area coordinates (roughly)
-            const reelX = 300 + currentX;
-            const reelY = 380 + currentY + 40; // 40 is offset for card top
-
-            // Quadratic Bezier curve for a bit of "sag"
-            const cpX = (anchorX + reelX) / 2 + (currentX * 0.1);
-            const cpY = (anchorY + reelY) / 2 + 20; // 20 is the sag factor
-
-            cordPath.setAttribute('d', `M ${anchorX},${anchorY} Q ${cpX},${cpY} ${reelX},${reelY}`);
-            
-            if (!isDragging) {
-                // Return to zero logic (Physics)
-                currentX += (targetX - currentX) * 0.15;
-                currentY += (targetY - currentY) * 0.15;
-                card.style.transform = `translate(${currentX}px, ${currentY}px) rotateX(${currentY/15}deg) rotateY(${-currentX/15}deg)`;
-            }
-            
-            requestAnimationFrame(updateCord);
-        }
+        let x = 0, y = 0, vx = 0, vy = 0;
+        let lastMouseX = 0, lastMouseY = 0;
 
         dragArea.addEventListener('mousedown', (e) => {
             isDragging = true;
-            startMouseX = e.clientX - currentX;
-            startMouseY = e.clientY - currentY;
-            card.style.transition = 'none';
+            lastMouseX = e.clientX;
+            lastMouseY = e.clientY;
         });
 
         document.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                currentX = e.clientX - startMouseX;
-                currentY = e.clientY - startMouseY;
-                
-                // Limits
-                const limit = 200;
-                currentX = Math.max(-limit, Math.min(limit, currentX));
-                currentY = Math.max(-50, Math.min(limit * 2, currentY));
-                
-                card.style.transform = `translate(${currentX}px, ${currentY}px) rotateX(${currentY/10}deg) rotateY(${-currentX/10}deg)`;
-            } else {
-                // Hover Tilt
-                const rect = dragArea.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
-                    const rotX = (y - rect.height/2) / 20;
-                    const rotY = (rect.width/2 - x) / 20;
-                    card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(30px)`;
-                }
+            if (!isDragging) return;
+            x += (e.clientX - lastMouseX);
+            y += (e.clientY - lastMouseY);
+            lastMouseX = e.clientX;
+            lastMouseY = e.clientY;
+        });
+
+        document.addEventListener('mouseup', () => isDragging = false);
+
+        function animate() {
+            if (!isDragging) {
+                // Spring Physics
+                vx = (vx + (-x * 0.07)) * 0.86;
+                vy = (vy + (-y * 0.07)) * 0.86;
+                x += vx;
+                y += vy;
             }
-        });
 
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            targetX = 0;
-            targetY = 0;
-        });
+            // Realistis Lanyard Logic
+            const dynamicAnchorX = 300 + (x * 0.2); // Tali leher ikut melentur 20%
+            const dynamicAnchorY = 380 + (y * 0.15);
 
-        // Initialize animation loop
-        updateCord();
+            strapPath.setAttribute('d', `M 200,50 C 200,10 400,10 400,50 L 400,350 L ${dynamicAnchorX},${dynamicAnchorY} L 200,350 Z`);
+            ring.setAttribute('cx', dynamicAnchorX);
+            ring.setAttribute('cy', dynamicAnchorY);
+            cordPath.setAttribute('d', `M ${dynamicAnchorX},${dynamicAnchorY} L ${300 + x},${380 + y + 40}`);
+            
+            const rotX = y / 10 + vy * 1.5;
+            const rotY = -x / 10 - vx * 1.5;
+            card.style.transform = `translate(${x}px, ${y}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
-        // Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Reveal Animation on Scroll
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
-        revealElements.forEach(el => revealObserver.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
