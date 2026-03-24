@@ -39,6 +39,29 @@
             z-index: 100;
         }
 
+        /* Blue Ambient Glows */
+        .bg-glow-1 {
+            position: fixed;
+            top: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(0, 56, 255, 0.1) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(0, 56, 255, 0.05) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         /* Custom Cursor */
         #cursor {
             position: fixed;
@@ -101,6 +124,36 @@
 
         .strap { fill: none; stroke: #121212; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
         .cord { fill: none; stroke: #444; stroke-width: 2.5; }
+
+        /* ID Card Spotlight Effect */
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: #eee;
+            margin-bottom: 24px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+
+        .photo-grayscale {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.1);
+        }
+
+        .photo-spotlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: circle(0px at 50% 50%);
+            z-index: 2;
+            transition: clip-path 0.1s ease;
+        }
 
         /* Editorial Grid */
         .editorial-grid {
@@ -174,6 +227,8 @@
 <body class="antialiased">
     <div id="cursor"></div>
     <div class="bg-grain"></div>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-[200] px-10 py-8 flex justify-between items-center mix-blend-difference text-white">
@@ -198,8 +253,9 @@
                     </h1>
                 </div>
                 <div class="reveal max-w-xl">
-                    <p class="text-lg lg:text-2xl font-light text-gray-400 leading-tight">
-                        Electronics Engineering student at the Bandung State Polytechnic with experience in  <span class="text-white">research and development of electronic systems, instrumentation, embedded systems, and industrial automation</span>.
+                    <!-- Font bio sedikit dikecilkan sesuai request -->
+                    <p class="text-base lg:text-xl font-light text-gray-400 leading-relaxed">
+                        Electronics Engineering student at the Bandung State Polytechnic with experience in <span class="text-white">research and development of electronic systems, instrumentation, embedded systems, and industrial automation</span>.
                     </p>
                 </div>
             </div>
@@ -218,8 +274,10 @@
                             <span class="text-[7px] font-black tracking-widest text-gray-400">ID: 2313-PB</span>
                         </div>
                         
-                        <div class="w-full aspect-[4/5] bg-gray-100 mb-6 overflow-hidden grayscale contrast-125 border border-gray-100">
-                            <img src="dikas.jpg" alt="Andika Satria" class="w-full h-full object-cover">
+                        <!-- Photo Frame with Spotlight Effect -->
+                        <div class="photo-frame" id="photoFrame">
+                            <img src="dikas.jpg" alt="Andika Satria" class="photo-grayscale">
+                            <img src="dikas.jpg" alt="Andika Satria" class="photo-spotlight" id="spotlightImg">
                         </div>
 
                         <div class="text-left">
@@ -368,12 +426,14 @@
             cursor.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
         });
 
-        // PHYSICS ENGINE FOR ID BADGE (Improved Lanyard)
+        // PHYSICS ENGINE FOR ID BADGE
         const card = document.getElementById('interactiveCard');
         const dragArea = document.getElementById('dragArea');
         const strapPath = document.getElementById('strap-path');
         const cordPath = document.getElementById('cord-path');
         const ring = document.getElementById('ring');
+        const photoFrame = document.getElementById('photoFrame');
+        const spotlightImg = document.getElementById('spotlightImg');
 
         let isDragging = false;
         let x = 0, y = 0, vx = 0, vy = 0;
@@ -387,9 +447,23 @@
         });
 
         document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            x += (e.clientX - lastMouseX);
-            y += (e.clientY - lastMouseY);
+            if (isDragging) {
+                x += (e.clientX - lastMouseX);
+                y += (e.clientY - lastMouseY);
+            }
+
+            // Spotlight Logic
+            const rect = photoFrame.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right && 
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                
+                const localX = e.clientX - rect.left;
+                const localY = e.clientY - rect.top;
+                spotlightImg.style.clipPath = `circle(80px at ${localX}px ${localY}px)`;
+            } else {
+                spotlightImg.style.clipPath = `circle(0px at 50% 50%)`;
+            }
+
             lastMouseX = e.clientX;
             lastMouseY = e.clientY;
         });
@@ -398,15 +472,13 @@
 
         function animate() {
             if (!isDragging) {
-                // Spring Physics
                 vx = (vx + (-x * 0.08)) * 0.85;
                 vy = (vy + (-y * 0.08)) * 0.85;
                 x += vx;
                 y += vy;
             }
 
-            // Realistis Lanyard Logic (Strap & Cord deformation)
-            const daX = 300 + (x * 0.22); // Simpul leher ikut melentur 22%
+            const daX = 300 + (x * 0.22);
             const daY = 380 + (y * 0.18);
 
             strapPath.setAttribute('d', `M 200,50 C 200,10 400,10 400,50 L 400,350 L ${daX},${daY} L 200,350 Z`);
