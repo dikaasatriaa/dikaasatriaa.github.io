@@ -185,14 +185,13 @@
         /* Kartu Kertas Putih di Dalam */
         .id-card-paper {
             background: #fff;
-            flex: 1; /* Mengisi ruang yang tersisa dengan padding casing */
+            flex: 1; 
             border-radius: 4px;
             padding: 24px;
             display: flex;
             flex-direction: column;
             position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            /* Pastikan tidak overflow */
             overflow: hidden; 
         }
 
@@ -202,7 +201,7 @@
             background: #000;
             border-radius: 20px;
             position: absolute;
-            top: 25px; /* Disesuaikan agar simetris dengan casing */
+            top: 25px; 
             left: 50%;
             transform: translateX(-50%);
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
@@ -385,6 +384,7 @@
                         <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
                     </filter>
                 </defs>
+                <!-- Koordinat awal simpul tali di (400, 295) -->
                 <path id="strap-path" class="lanyard-strap" d="M 50,0 L 400,295 L 750,0" filter="url(#softShadow)" />
             </svg>
 
@@ -539,11 +539,14 @@
                 x += vx; y += vy;
             }
 
-            const holeX = 400 + x * 0.15;
-            const holeY = 295 + y * 0.1;
+            // Sync koordinat: Sekarang tali dan pengait mengikuti kartu 1:1 di area hole
+            // Hole di casing berada tepat di tengah (400 pada SVG viewBox) 
+            // Jadi offset kartu 'x' dan 'y' langsung diterapkan ke SVG element
+            const holeX = 400 + x;
+            const holeY = 295 + y;
 
             strapPath.setAttribute('d', `M 50,0 L ${holeX},${holeY} L 750,0`);
-            clipGroup.setAttribute('transform', `translate(${x * 0.15}, ${y * 0.1})`);
+            clipGroup.setAttribute('transform', `translate(${x}, ${y})`);
             
             const rotX = y / 18 + vy * 1.5;
             const rotY = -x / 18 - vx * 1.5;
