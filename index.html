@@ -50,7 +50,7 @@
             pointer-events: none;
         }
 
-        /* Kursor Kustom */
+        /* Custom Cursor */
         #cursor {
             position: fixed;
             width: 10px;
@@ -63,27 +63,25 @@
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Arsitektur Layout Hero - Distribusi Simetris */
+        /* Hero Layout - Distribusi Simetris & Padat */
         .hero-container {
             position: relative;
             min-height: 100vh;
             display: grid;
-            /* Kolom 1: Teks Utama | Kolom 2: Area Kartu ID | Kolom 3: Branding Vertikal */
             grid-template-columns: 1.1fr 0.9fr auto; 
             align-items: center;
-            padding: 0 60px; /* Padding Simetris Kiri & Kanan */
+            padding: 0 80px; /* Padding ditingkatkan untuk keseimbangan */
             overflow: visible;
-            column-gap: 40px;
+            column-gap: 60px;
         }
 
-        /* Navigasi */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 200;
-            padding: 40px 60px;
+            padding: 40px 80px;
             mix-blend-difference: exclusion;
         }
 
@@ -105,12 +103,12 @@
             -webkit-text-stroke: 1.5px var(--blue-brand);
         }
 
-        /* Branding Vertikal Sisi Kanan - Sangar & Bersih */
+        /* Branding Vertikal Sisi Kanan - Sangar */
         .branding-sidebar {
             height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: flex-end; /* Memastikan ke sisi kanan */
+            justify-content: flex-end;
             position: relative;
             z-index: 20;
         }
@@ -143,13 +141,15 @@
             z-index: 10;
         }
 
+        /* ID Card - Casing Transparan (PVC Style) */
         .id-card {
-            width: 340px;
-            height: 520px;
-            background: #fff;
-            color: #000;
-            border-radius: 2px;
-            padding: 26px;
+            width: 360px;
+            height: 540px;
+            background: rgba(255, 255, 255, 0.08); /* Semi-transparan */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px; /* Margin untuk kartu di dalam */
             transform-style: preserve-3d;
             box-shadow: 0 50px 150px -30px rgba(0,0,0,0.9);
             position: relative;
@@ -158,19 +158,53 @@
             user-select: none;
             cursor: grab;
             z-index: 15;
+            overflow: hidden;
+        }
+
+        /* Efek Kilap (Glare) pada Casing */
+        .id-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 45%,
+                rgba(255, 255, 255, 0.08) 48%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.08) 52%,
+                transparent 55%
+            );
+            pointer-events: none;
+            z-index: 30;
+            transform: rotate(10deg);
+        }
+
+        /* Kartu Kertas di Dalam Casing */
+        .id-card-paper {
+            background: #fff;
+            flex: 1;
+            border-radius: 4px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .card-hole {
-            width: 50px;
+            width: 55px;
             height: 14px;
             background: #000;
             border-radius: 20px;
             position: absolute;
-            top: 15px;
+            top: 25px; /* Disesuaikan dengan posisi casing */
             left: 50%;
             transform: translateX(-50%);
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-            z-index: 2;
+            z-index: 20;
         }
 
         /* Layering SVG Lanyard */
@@ -193,7 +227,7 @@
             width: 1000px;
             height: 1000px;
             pointer-events: none;
-            z-index: 25;
+            z-index: 35; /* Di paling depan */
         }
 
         .lanyard-strap {
@@ -236,7 +270,7 @@
             filter: grayscale(0) brightness(1.1);
         }
 
-        /* Editorial Grid Sections */
+        /* Editorial Grid */
         .editorial-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -337,9 +371,9 @@
             </div>
         </div>
 
-        <!-- Kolom 2: Area Kartu ID (Tengah) -->
+        <!-- Kolom 2: Area Kartu ID (Casing Transparan) -->
         <div class="badge-stage" id="dragArea">
-            <!-- Tali (Belakang) -->
+            <!-- Tali (Paling Belakang) -->
             <svg id="lanyard-strap-svg" viewBox="0 0 800 1100">
                 <defs>
                     <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
@@ -349,30 +383,35 @@
                         <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
                     </filter>
                 </defs>
+                <!-- Posisi Y tali disesuaikan dengan casing baru -->
                 <path id="strap-path" class="lanyard-strap" d="M 50,0 L 400,295 L 750,0" filter="url(#softShadow)" />
             </svg>
 
-            <!-- Kartu ID -->
+            <!-- Casing Kartu ID Transparan -->
             <div class="id-card" id="interactiveCard">
                 <div class="card-hole"></div>
-                <div class="w-full flex justify-between items-center mb-4 mt-8">
-                    <img src="OIP.webp" class="h-6 opacity-60" alt="Polban">
-                    <span class="text-[7px] font-black tracking-widest text-gray-400">ID: 2313-PB-X</span>
-                </div>
                 
-                <div class="photo-frame" id="photoFrame">
-                    <img src="dikas.jpg" alt="Andika Satria" class="photo-base">
-                    <img src="dikas.jpg" alt="Andika Satria" class="photo-spotlight" id="spotlightImg">
-                </div>
+                <!-- Kartu Kertas di Dalam -->
+                <div class="id-card-paper">
+                    <div class="w-full flex justify-between items-center mb-4 mt-8">
+                        <img src="OIP.webp" class="h-6 opacity-60" alt="Logo Polban">
+                        <span class="text-[7px] font-black tracking-widest text-gray-400">ID: 2313-PB-X</span>
+                    </div>
+                    
+                    <div class="photo-frame" id="photoFrame">
+                        <img src="dikas.jpg" alt="Andika Satria" class="photo-base">
+                        <img src="dikas.jpg" alt="Andika Satria" class="photo-spotlight" id="spotlightImg">
+                    </div>
 
-                <div class="text-left mt-auto">
-                    <h2 class="text-2xl font-anton leading-none mb-1 text-black">Andika S.P</h2>
-                    <p class="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-6">Electronics & Systems Engineer</p>
-                    <div class="w-full h-10 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)] opacity-40"></div>
+                    <div class="text-left mt-auto">
+                        <h2 class="text-2xl font-anton leading-none mb-1 text-black">Andika S.P</h2>
+                        <p class="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-6">Electronics & Systems Engineer</p>
+                        <div class="w-full h-10 bg-[repeating-linear-gradient(90deg,#000,#000_2px,#fff_2px,#fff_4px)] opacity-40"></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Pengait (Depan) -->
+            <!-- Pengait Silver (Paling Depan) -->
             <svg id="lanyard-clip-svg" viewBox="0 0 800 1100">
                 <defs>
                     <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -395,7 +434,7 @@
         </div>
     </section>
 
-    <!-- Arsip Konten -->
+    <!-- Arsip Proyek -->
     <main id="showcase" class="py-60">
         <div class="px-10 mb-40 reveal">
             <h3 class="text-6xl lg:text-9xl font-anton leading-none">ARCHIVE<br><span class="text-blue-600 text-outline">WORKS (13)</span></h3>
@@ -426,10 +465,10 @@
 
             <div class="col-span-12 py-32 border-y border-white/5 reveal">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">03</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">AgriSpectra Drone</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">04</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">CHIMOS Poultry AI</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">05</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">IoT Shrimp Farm</p></div>
-                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">06</span><p class="text-sm font-bold mt-2 uppercase tracking-tighter">ESP32 Min-Sys</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">03</span><p class="text-sm font-bold mt-2">AgriSpectra Drone</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">04</span><p class="text-sm font-bold mt-2">CHIMOS Poultry AI</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">05</span><p class="text-sm font-bold mt-2">IoT Shrimp Farm</p></div>
+                    <div><span class="text-blue-600 font-anton text-2xl opacity-40">06</span><p class="text-sm font-bold mt-2">ESP32 Min-Sys</p></div>
                 </div>
             </div>
 
@@ -443,7 +482,7 @@
         <div class="px-10">
             <h2 class="font-anton leading-[0.8] mb-20 reveal text-[15vw]">LET'S<br><span class="text-blue-600">COLLAB.</span></h2>
             <div class="flex flex-col lg:flex-row justify-between items-end gap-12 reveal">
-                <a href="mailto:andika.satria.tele423@polban.ac.id" class="text-2xl lg:text-4xl font-bold block hover:text-blue-600 underline transition-all">andika.satria.tele423@polban.ac.id</a>
+                <a href="mailto:andika.satria.tele423@polban.ac.id" class="text-2xl lg:text-4xl font-bold block hover:text-blue-600 underline">andika.satria.tele423@polban.ac.id</a>
                 <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-600">© 2026 ANDIKA SATRIA PANCA</p>
             </div>
         </div>
