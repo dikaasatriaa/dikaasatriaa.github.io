@@ -29,7 +29,7 @@
         .font-anton { font-family: 'Anton', sans-serif; text-transform: uppercase; }
         .font-heading { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Premium Visual Elements */
+        /* Elemen Visual Premium */
         .bg-grain {
             position: fixed;
             inset: 0;
@@ -147,12 +147,12 @@
         /* ID Card - Casing PVC Transparan dengan Gap Presisi */
         .id-card {
             width: 330px;
-            height: 510px;
+            height: 520px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 14px;
-            padding: 14px; /* Gap merata di semua sisi */
+            padding: 16px; /* Gap merata di semua sisi */
             transform-style: preserve-3d;
             box-shadow: 0 40px 100px -20px rgba(0,0,0,0.9);
             position: relative;
@@ -185,13 +185,15 @@
         /* Kartu Kertas Putih di Dalam */
         .id-card-paper {
             background: #fff;
-            flex: 1;
+            flex: 1; /* Mengisi ruang yang tersisa dengan padding casing */
             border-radius: 4px;
             padding: 24px;
             display: flex;
             flex-direction: column;
             position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            /* Pastikan tidak overflow */
+            overflow: hidden; 
         }
 
         .card-hole {
